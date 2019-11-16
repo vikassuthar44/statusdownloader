@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "990575502545",
+    "firebase_url": "https://status-donwloaders.firebaseio.com",
+    "project_id": "status-donwloaders",
+    "storage_bucket": "status-donwloaders.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:990575502545:android:3990e6addb317277",
+        "android_client_info": {
+          "package_name": "com.statusdownloader"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "990575502545-0a1kipeas6hatnumbu1883nca7l8hove.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyD8P8wzoKvga0WyYdjM-REbcCaQLl55EQs"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "990575502545-0a1kipeas6hatnumbu1883nca7l8hove.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
