@@ -1,10 +1,11 @@
-package com.statusdownloader;
+package com.statusdownloader.vikas;
 
 
 import android.view.View;
 
 import com.google.android.gms.ads.formats.MediaView;
 import com.google.android.gms.ads.formats.UnifiedNativeAdView;
+import com.statusdownloader.R;
 
 import androidx.recyclerview.widget.RecyclerView;
 

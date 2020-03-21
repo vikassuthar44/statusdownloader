@@ -29,6 +29,7 @@
             android:text="@string/images"
             android:textColor="@color/white"
             android:textSize="@dimen/thirty_sp"
+            android:textStyle="italic"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_centerInParent="true"/>
@@ -64,4 +65,16 @@
             android:textColor="@color/colorAccent"
             android:textStyle="italic"/>
     </LinearLayout>
+
+    <!-- set Banner ad position in UI layout design -->
+    <com.google.android.gms.ads.AdView
+        xmlns:ads="http://schemas.android.com/apk/res-auto"
+        android:id="@+id/adView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        ads:adSize="BANNER"
+        ads:adUnitId="@string/admob_banner" />
+
 </RelativeLayout>

@@ -5,18 +5,24 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@drawable/action_bar_gradient"
-    tools:context=".MainActivity">
+    tools:context=".vikas.MainActivity">
 
     <RelativeLayout
         android:id="@+id/rl_action_bar"
         android:layout_width="match_parent"
         android:layout_height="?attr/actionBarSize"
         android:background="@color/actionbar">
-        <ImageView
+        <RelativeLayout
             android:layout_width="?attr/actionBarSize"
             android:layout_height="?attr/actionBarSize"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true">
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
             android:src="@drawable/ic_help_outline_black_24dp"
-            android:padding="@dimen/ten_dp"/>
+            android:layout_centerInParent="true"/>
+        </RelativeLayout>
 
         <TextView
             android:layout_width="wrap_content"
@@ -30,22 +36,21 @@
             android:textSize="25sp"
             android:textColor="@color/white"/>
     </RelativeLayout>
-    <LinearLayout
-        android:layout_width="wrap_content"
+    <RelativeLayout
+        android:layout_width="?attr/actionBarSize"
         android:layout_height="?attr/actionBarSize"
         android:layout_alignParentEnd="true"
         android:layout_alignParentRight="true">
 
 
         <ImageView
-            android:layout_width="?attr/actionBarSize"
-            android:layout_height="?attr/actionBarSize"
-            android:src="@drawable/ic_share_black_24dp"
-            android:padding="@dimen/ten_dp"/>
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:src="@drawable/ic_share_black_24dp"/>
 
 
-    </LinearLayout>
-
+    </RelativeLayout>
 
 
     <LinearLayout
@@ -54,6 +59,15 @@
         android:layout_height="wrap_content"
         android:layout_centerInParent="true"
         android:orientation="vertical">
+
+        <ImageView
+            android:id="@+id/image"
+            android:layout_width="150dp"
+            android:layout_height="150dp"
+            android:src="@drawable/app_icon"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginBottom="@dimen/fiftyDp"
+            android:layout_marginTop="@dimen/thirty_dp"/>
 
         <RelativeLayout
             android:id="@+id/rl_image"
@@ -68,7 +82,8 @@
                 android:text="Whats App Status Image's"
                 android:layout_centerInParent="true"
                 android:textColor="@color/white"
-                android:textSize="20sp"/>
+                android:textSize="20sp"
+                android:textStyle="italic"/>
 
 
         </RelativeLayout>
@@ -91,23 +106,39 @@
                 android:text="Whats App status Video's"
                 android:textColor="@color/white"
                 android:textSize="20sp"
+            android:textStyle="italic"
+                android:layout_centerInParent="true"/>
+
+
+        </RelativeLayout>
+
+
+        <RelativeLayout
+            android:visibility="gone"
+            android:id="@+id/rl_instagram"
+            android:layout_width="250dp"
+            android:layout_height="100dp"
+            android:layout_marginTop="@dimen/ten_dp"
+            android:layout_gravity="center_horizontal"
+            android:background="@drawable/button_background">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Instagram profile and other photos Donwload"
+                android:gravity="center"
+                android:padding="@dimen/ten_dp"
+                android:textColor="@color/white"
+                android:textSize="20sp"
                 android:layout_centerInParent="true"/>
 
 
         </RelativeLayout>
     </LinearLayout>
 
-    <ImageView
-        android:layout_below="@id/rl_action_bar"
-        android:id="@+id/image"
-        android:layout_width="150dp"
-        android:layout_height="150dp"
-        android:src="@drawable/app_icon"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="@dimen/thirty_dp"/>
+
 
     <Button
-        android:visibility="gone"
         android:id="@+id/tab"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"

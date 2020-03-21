@@ -13,25 +13,26 @@
         android:roundIcon="@drawable/app_icon"
         android:supportsRtl="true"
         android:theme="@style/AppThemeNoActionBar">
-        <activity android:name=".MainActivity">
+        <activity android:name=".vikas.MainActivity">
 
         </activity>
-       <activity android:name=".ImageActivity"
+       <activity android:name=".vikas.ImageActivity"
            android:screenOrientation="portrait"
            />
-        <activity android:name=".FullScreenImageActivity"
+        <activity android:name=".vikas.FullScreenImageActivity"
             android:screenOrientation="portrait"
             />
-        <activity android:name=".VideoActivity" />
-        <activity android:name=".FullScreenVideoActivity" />
-        <activity android:name=".SplashActivity" >
+        <activity android:name=".vikas.VideoActivity" />
+        <activity android:name=".vikas.FullScreenVideoActivity" />
+        <activity android:name=".vikas.SplashActivity" >
         <intent-filter>
             <action android:name="android.intent.action.MAIN" />
             <action android:name="android.intent.action.VIEW"/>
             <category android:name="android.intent.category.LAUNCHER" />
         </intent-filter>
         </activity>
-        <activity android:name=".TabActivity" />
+        <activity android:name=".vikas.TabActivity" />
+        <activity android:name=".instagram.InstagramSelfProfile" />
 
 
         <meta-data

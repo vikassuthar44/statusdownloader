@@ -1,9 +1,8 @@
-package com.statusdownloader;
+package com.statusdownloader.vikas;
 
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.Canvas;
-import android.media.MediaPlayer;
 import android.net.Uri;
 import android.os.Bundle;
 import android.os.Environment;
@@ -18,6 +17,13 @@ import android.widget.MediaController;
 import android.widget.RelativeLayout;
 import android.widget.Toast;
 import android.widget.VideoView;
+
+import com.google.android.gms.ads.AdListener;
+import com.google.android.gms.ads.AdRequest;
+import com.google.android.gms.ads.AdView;
+import com.google.android.gms.ads.InterstitialAd;
+import com.google.android.gms.ads.MobileAds;
+import com.statusdownloader.R;
 
 import java.io.File;
 import java.io.FileInputStream;
@@ -38,6 +44,8 @@ public class FullScreenVideoActivity extends AppCompatActivity implements View.O
     private Bitmap myBitmap;
     private String videoPath;
     private Animation slideDown;
+    private AdView mAdView;
+    private InterstitialAd interstitialAd;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -48,6 +56,70 @@ public class FullScreenVideoActivity extends AppCompatActivity implements View.O
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);*/
         //getSupportActionBar().hide();
         initData();
+
+        // Initialize the Mobile Ads SDK
+        MobileAds.initialize(this, getString(R.string.admob_app_id));
+
+        // Find Banner ad
+        mAdView = findViewById(R.id.adView);
+
+        // for(int i=0;i<1000;i++) {
+        AdRequest adRequest = new AdRequest
+                .Builder()
+                .build();
+        mAdView.loadAd(adRequest);
+        //}
+
+        mAdView.setAdListener(new AdListener() {
+            @Override
+            public void onAdLoaded() {
+                // Code to be executed when an ad finishes loading.
+                Log.d(TAG, "onAdLoaded: ");
+            }
+
+            @Override
+            public void onAdFailedToLoad(int errorCode) {
+                // Code to be executed when an ad request fails.
+                Log.d(TAG, "onAdFailedToLoad: error code " + errorCode);
+            }
+
+            @Override
+            public void onAdOpened() {
+                // Code to be executed when an ad opens an overlay that
+                // covers the screen.
+                Log.d(TAG, "onAdOpened: ");
+            }
+
+            @Override
+            public void onAdClicked() {
+                // Code to be executed when the user clicks on an ad.
+                Log.d(TAG, "onAdClicked: ");
+            }
+
+            @Override
+            public void onAdLeftApplication() {
+                // Code to be executed when the user has left the app.
+                Log.d(TAG, "onAdLeftApplication: ");
+            }
+
+            @Override
+            public void onAdClosed() {
+                // Code to be executed when the user is about to return
+                // to the app after tapping on an ad.
+                Log.d(TAG, "onAdClosed: ");
+            }
+        });
+
+
+
+        // prepare for interstitial ad
+        interstitialAd = new InterstitialAd(FullScreenVideoActivity.this);
+
+        //insert interstitial id
+        interstitialAd.setAdUnitId(getResources().getString(R.string.admob_interstitial_id));
+
+        interstitialAd.loadAd(adRequest);
+
 
 
 
@@ -64,12 +136,6 @@ public class FullScreenVideoActivity extends AppCompatActivity implements View.O
 
         video = (VideoView) findViewById(R.id.video);
 
-        back = (ImageView) findViewById(R.id.iv_back);
-        back.setOnClickListener(this);
-        download = (ImageView) findViewById(R.id.iv_download);
-        download.setOnClickListener(this);
-        share = (ImageView) findViewById(R.id.iv_share);
-        share.setOnClickListener(this);
 
         rl_back = (RelativeLayout)findViewById(R.id.rl_back);
         rl_back.setOnClickListener(this);
@@ -83,32 +149,9 @@ public class FullScreenVideoActivity extends AppCompatActivity implements View.O
         Intent intent = getIntent();
         if(intent != null) {
 
-            /*MediaPlayer.OnErrorListener mOnErrorListener = new MediaPlayer.OnErrorListener() {
 
-                @Override
-                public boolean onError(MediaPlayer mp, int what, int extra) {
-                    // Your code goes here
-                    return true;
-                }
-            };*/
             videoPath = intent.getStringExtra("videoUrl");
             Uri uri = Uri.parse(videoPath);
-
-            //video.setVideoPath(videoPath);
-           // video.setVideoURI(uri);
-            //video.start();
-            /*video.setOnErrorListener(mOnErrorListener);
-
-            video.setOnPreparedListener(new MediaPlayer.OnPreparedListener() {
-                @Override
-                public void onPrepared(MediaPlayer mp) {
-                    mp.setVolume(0f,100f);
-                    mp.setLooping(true);
-                }
-            });*/
-            //myBitmap = BitmapFactory.decodeFile(imagePath);
-
-            //image.setImageBitmap(myBitmap);
 
 
             MediaController mediaController = new MediaController(this);
@@ -191,6 +234,12 @@ public class FullScreenVideoActivity extends AppCompatActivity implements View.O
         }
         refreshGallery(new_file);
 
+        if(interstitialAd.isLoaded()) {
+            Log.d(TAG, "downloadImage: df");
+            interstitialAd.show();
+        } else {
+            Log.d(TAG, "downloadImage: dfsd");
+        }
     }
     public void refreshGallery(File file){
         Intent intent = new Intent(Intent.ACTION_MEDIA_SCANNER_SCAN_FILE);
@@ -221,20 +270,13 @@ public class FullScreenVideoActivity extends AppCompatActivity implements View.O
     public void shareImage() {
 
         File videoFile = new File(videoPath);
-       /* Uri videoURI = Build.VERSION.SDK_INT >= Build.VERSION_CODES.N
-                ? FileProvider.getUriForFile(getApplicationContext(), getApplicationContext().getPackageName(), videoFile)
-                : Uri.fromFile(videoFile);
-        ShareCompat.IntentBuilder.from(this)
-                .setStream(videoURI)
-                .setType("video/*")
-                .setChooserTitle("Share video...")
-                .startChooser();*/
         Log.d(TAG, "share image clicked");
 
         Uri imgUri = Uri.parse(videoFile.getAbsolutePath());
         Intent whatsappIntent = new Intent(Intent.ACTION_SEND);
         whatsappIntent.setType("text/plain");
         whatsappIntent.putExtra(Intent.EXTRA_STREAM, imgUri);
+        whatsappIntent.putExtra(Intent.EXTRA_TEXT, "If you want to save or share your friend's status, please click on this link \n https://status-donwloaders.web.app/");
         whatsappIntent.setType("video/*");
         whatsappIntent.addFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION);
 

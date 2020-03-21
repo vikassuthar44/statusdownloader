@@ -1,4 +1,4 @@
-package com.statusdownloader;
+package com.statusdownloader.vikas;
 
 import android.Manifest;
 import android.app.Activity;
@@ -21,6 +21,8 @@ import com.google.android.gms.ads.AdListener;
 import com.google.android.gms.ads.AdRequest;
 import com.google.android.gms.ads.AdView;
 import com.google.android.gms.ads.MobileAds;
+import com.statusdownloader.R;
+
 
 import java.io.File;
 
@@ -28,7 +30,7 @@ public class MainActivity extends AppCompatActivity {
 
 
     private static final String TAG = MainActivity.class.getSimpleName();
-    private RelativeLayout rl_image,rl_video,rl_action_bar;
+    private RelativeLayout rl_image,rl_video,rl_action_bar,rl_instagram;
     private ImageView imageView;
     private AdView mAdView;
     private Animation leftToRight, rightToLeft, slideDown, zoomIn;
@@ -131,6 +133,8 @@ public class MainActivity extends AppCompatActivity {
         imageView = (ImageView) findViewById(R.id.image);
         imageView.startAnimation(zoomIn);
         rl_image.startAnimation(leftToRight);
+
+
 
         rl_video = (RelativeLayout) findViewById(R.id.rl_video);
         rl_video.setOnClickListener(new View.OnClickListener() {

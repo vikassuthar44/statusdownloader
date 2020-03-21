@@ -1,34 +1,34 @@
 {
   "project_info": {
-    "project_number": "990575502545",
-    "firebase_url": "https://status-donwloaders.firebaseio.com",
-    "project_id": "status-donwloaders",
-    "storage_bucket": "status-donwloaders.appspot.com"
+    "project_number": "111269725593",
+    "firebase_url": "https://status-downloaders.firebaseio.com",
+    "project_id": "status-downloaders",
+    "storage_bucket": "status-downloaders.appspot.com"
   },
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:990575502545:android:3990e6addb317277",
+        "mobilesdk_app_id": "1:111269725593:android:68bb9ae4c8dfac8d387f08",
         "android_client_info": {
-          "package_name": "com.statusdownloader"
+          "package_name": "com.statusdownloader.vikas"
         }
       },
       "oauth_client": [
         {
-          "client_id": "990575502545-0a1kipeas6hatnumbu1883nca7l8hove.apps.googleusercontent.com",
+          "client_id": "111269725593-u6k3klrd8tr7s1cbpaoq72anutjibvhe.apps.googleusercontent.com",
           "client_type": 3
         }
       ],
       "api_key": [
         {
-          "current_key": "AIzaSyD8P8wzoKvga0WyYdjM-REbcCaQLl55EQs"
+          "current_key": "AIzaSyCkmQkyg6sgsRziT3ejVKaYi6SXKBCmIy0"
         }
       ],
       "services": {
         "appinvite_service": {
           "other_platform_oauth_client": [
             {
-              "client_id": "990575502545-0a1kipeas6hatnumbu1883nca7l8hove.apps.googleusercontent.com",
+              "client_id": "111269725593-u6k3klrd8tr7s1cbpaoq72anutjibvhe.apps.googleusercontent.com",
               "client_type": 3
             }
           ]

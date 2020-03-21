@@ -13,7 +13,7 @@
         android:id="@+id/iv_image"
         android:layout_width="match_parent"
         android:layout_height="200dp"
-        android:src="@mipmap/ic_launcher"
+        android:src="@drawable/app_icon"
         android:scaleType="centerCrop"/>
 
 </androidx.cardview.widget.CardView>

@@ -4,7 +4,7 @@
     <color name="colorPrimaryDark">#232526</color>
     <color name="colorAccent">#D81B60</color>
     <color name="actionbar">#232526</color>
-    <color name="background">#283048</color>
+    <color name="background">#FFFFFF</color>
     <color name="white">#FFFFFF</color>
     <color name="black">#000000</color>
 </resources>

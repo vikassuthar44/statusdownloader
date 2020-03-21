@@ -1,4 +1,4 @@
-package com.statusdownloader;
+package com.statusdownloader.vikas;
 
 import android.app.Activity;
 import android.content.Intent;
@@ -8,7 +8,6 @@ import android.graphics.BitmapFactory;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -19,16 +18,12 @@ import android.widget.ImageView;
 import android.widget.RatingBar;
 import android.widget.TextView;
 
-import com.google.android.gms.ads.AdListener;
-import com.google.android.gms.ads.AdLoader;
-import com.google.android.gms.ads.AdRequest;
 import com.google.android.gms.ads.NativeExpressAdView;
 import com.google.android.gms.ads.VideoController;
-import com.google.android.gms.ads.VideoOptions;
 import com.google.android.gms.ads.formats.NativeAd;
-import com.google.android.gms.ads.formats.NativeAdOptions;
 import com.google.android.gms.ads.formats.UnifiedNativeAd;
 import com.google.android.gms.ads.formats.UnifiedNativeAdView;
+import com.statusdownloader.R;
 
 import java.util.ArrayList;
 
@@ -42,11 +37,13 @@ public class ImageViewAdapter extends RecyclerView.Adapter<RecyclerView.ViewHold
     private static String LOG_TAG = "EXAMPLE";
     private NativeExpressAdView mAdView;
     private VideoController mVideoController;
+    private OnClickListerner onClickListerner;
 
-    public ImageViewAdapter(Activity activity, ArrayList<String> imageList) {
+    public ImageViewAdapter(Activity activity, ArrayList<String> imageList, OnClickListerner onClickListerner) {
 
         this.activity = activity;
         this.imageList = imageList;
+        this.onClickListerner = onClickListerner;
 
     }
 
@@ -88,15 +85,16 @@ public class ImageViewAdapter extends RecyclerView.Adapter<RecyclerView.ViewHold
             myViewHolder.image.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    Intent intent = new Intent(activity, FullScreenImageActivity.class);
-                    intent.putExtra("imageUrl", imageList.get(position));
-                    activity.startActivity(intent);
+                    onClickListerner.onlick(position);
                 }
             });
 
             Animation zoomIn = AnimationUtils.loadAnimation(activity.getApplicationContext(), R.anim.zoom_in);
             myViewHolder.image.startAnimation(zoomIn);
         } else {
+
+        }
+        /*} else {
 
             UnifiedNativeAd nativeAd = (UnifiedNativeAd) mRecyclerViewItems.get(position);
             populateNativeAdView(nativeAd, ((UnifiedNativeAdViewHolder) viewHolder).getAdView());
@@ -135,19 +133,19 @@ public class ImageViewAdapter extends RecyclerView.Adapter<RecyclerView.ViewHold
 
 
 
-        }
+
 
 
     }
 
     @Override
     public int getItemViewType(int position) {
-        if (position != 0) {
+        /*if (position != 0) {
             if (position / 9 == 0)
                 return NATIVE_AD_VIEW;
             else
                 return IMAGE_VIEW;
-        } else
+        } else*/
             return IMAGE_VIEW;
     }
 
@@ -233,4 +231,7 @@ public class ImageViewAdapter extends RecyclerView.Adapter<RecyclerView.ViewHold
     }
 
 
+    interface  OnClickListerner {
+        void onlick(int position);
+    }
 }
