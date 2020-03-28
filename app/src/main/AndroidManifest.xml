@@ -13,16 +13,9 @@
         android:roundIcon="@drawable/app_icon"
         android:supportsRtl="true"
         android:theme="@style/AppThemeNoActionBar">
-        <activity android:name=".vikas.MainActivity">
-
-        </activity>
-       <activity android:name=".vikas.ImageActivity"
-           android:screenOrientation="portrait"
-           />
         <activity android:name=".vikas.FullScreenImageActivity"
             android:screenOrientation="portrait"
             />
-        <activity android:name=".vikas.VideoActivity" />
         <activity android:name=".vikas.FullScreenVideoActivity" />
         <activity android:name=".vikas.SplashActivity" >
         <intent-filter>

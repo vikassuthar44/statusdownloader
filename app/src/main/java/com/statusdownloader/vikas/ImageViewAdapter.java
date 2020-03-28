@@ -20,12 +20,14 @@ import android.widget.TextView;
 
 import com.google.android.gms.ads.NativeExpressAdView;
 import com.google.android.gms.ads.VideoController;
+import com.google.android.gms.ads.formats.MediaView;
 import com.google.android.gms.ads.formats.NativeAd;
 import com.google.android.gms.ads.formats.UnifiedNativeAd;
 import com.google.android.gms.ads.formats.UnifiedNativeAdView;
 import com.statusdownloader.R;
 
 import java.util.ArrayList;
+import java.util.List;
 
 public class ImageViewAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
 
@@ -38,30 +40,35 @@ public class ImageViewAdapter extends RecyclerView.Adapter<RecyclerView.ViewHold
     private NativeExpressAdView mAdView;
     private VideoController mVideoController;
     private OnClickListerner onClickListerner;
+    // The list of Native ads and menu items.
+    //private final List<Object>
+    // The list of Native ads and menu items.
+    private final List<Object> mRecyclerViewItems;;
 
-    public ImageViewAdapter(Activity activity, ArrayList<String> imageList, OnClickListerner onClickListerner) {
+    public ImageViewAdapter(Activity activity, ArrayList<String> imageList, OnClickListerner onClickListerner, List<Object> mRecyclerViewItems) {
 
         this.activity = activity;
         this.imageList = imageList;
         this.onClickListerner = onClickListerner;
+        this.mRecyclerViewItems = mRecyclerViewItems;
 
     }
 
     @NonNull
     @Override
-    public RecyclerView.ViewHolder onCreateViewHolder(@NonNull ViewGroup viewGroup, int i) {
-        View view;
-
-        if (i == IMAGE_VIEW) {
-            view = LayoutInflater.from(activity).inflate(R.layout.single_image, viewGroup, false);
-            return new MyViewHolder(view);
-        } else {
-
-            View unifiedNativeLayoutView = LayoutInflater.from(
-                    viewGroup.getContext()).inflate(R.layout.native_ad_layout,
-                    viewGroup, false);
-            return new UnifiedNativeAdViewHolder(unifiedNativeLayoutView);
-
+    public RecyclerView.ViewHolder onCreateViewHolder(@NonNull ViewGroup viewGroup, int viewType) {
+        switch (viewType) {
+            case NATIVE_AD_VIEW:
+                View unifiedNativeLayoutView = LayoutInflater.from(
+                        viewGroup.getContext()).inflate(R.layout.native_ad_layout,
+                        viewGroup, false);
+                return new UnifiedNativeAdViewHolder(unifiedNativeLayoutView);
+            case IMAGE_VIEW:
+                // Fall through.
+            default:
+                View menuItemLayoutView = LayoutInflater.from(viewGroup.getContext()).inflate(
+                        R.layout.single_image, viewGroup, false);
+                return new MyViewHolder(menuItemLayoutView);
         }
 
 
@@ -72,86 +79,50 @@ public class ImageViewAdapter extends RecyclerView.Adapter<RecyclerView.ViewHold
 
         if(getItemViewType(position) == IMAGE_VIEW) {
 
-            MyViewHolder myViewHolder = (MyViewHolder) viewHolder;
-            Bitmap myBitmap = BitmapFactory.decodeFile(imageList.get(position));
+            if(position < imageList.size()) {
+                MyViewHolder myViewHolder = (MyViewHolder) viewHolder;
+                Bitmap myBitmap = BitmapFactory.decodeFile(imageList.get(position));
 
-            //ImageView myImage = (ImageView) findViewById(R.id.imageviewTest);
+                //ImageView myImage = (ImageView) findViewById(R.id.imageviewTest);
 
-            //imageView.setImageBitmap(myBitmap);
+                //imageView.setImageBitmap(myBitmap);
 
 
-            myViewHolder.image.setImageBitmap(myBitmap);
+                myViewHolder.image.setImageBitmap(myBitmap);
 
-            myViewHolder.image.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    onClickListerner.onlick(position);
-                }
-            });
+                myViewHolder.image.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        onClickListerner.onlick(position);
+                    }
+                });
 
-            Animation zoomIn = AnimationUtils.loadAnimation(activity.getApplicationContext(), R.anim.zoom_in);
-            myViewHolder.image.startAnimation(zoomIn);
+                Animation zoomIn = AnimationUtils.loadAnimation(activity.getApplicationContext(), R.anim.zoom_in);
+                myViewHolder.image.startAnimation(zoomIn);
+            }
         } else {
-
-        }
-        /*} else {
-
             UnifiedNativeAd nativeAd = (UnifiedNativeAd) mRecyclerViewItems.get(position);
             populateNativeAdView(nativeAd, ((UnifiedNativeAdViewHolder) viewHolder).getAdView());
-
-          /*  // Set its video options.
-            mAdView.setVideoOptions(new VideoOptions.Builder()
-                    .setStartMuted(true)
-                    .build());
-
-// The VideoController can be used to get lifecycle events and info about an ad's video
-// asset. One will always be returned by getVideoController, even if the ad has no video
-// asset.
-            mVideoController = mAdView.getVideoController();
-            mVideoController.setVideoLifecycleCallbacks(new VideoController.VideoLifecycleCallbacks() {
-                @Override
-                public void onVideoEnd() {
-                    Log.d(LOG_TAG, "Video playback is finished.");
-                    super.onVideoEnd();
-                }
-            });
-
-              // Set an AdListener for the AdView, so the Activity can take action when an ad has finished
-              // loading.
-            mAdView.setAdListener(new AdListener() {
-                @Override
-                public void onAdLoaded() {
-                    if (mVideoController.hasVideoContent()) {
-                        Log.d(LOG_TAG, "Received an ad that contains a video asset.");
-                    } else {
-                        Log.d(LOG_TAG, "Received an ad that does not contain a video asset.");
-                    }
-                }
-            });
-
-            mAdView.loadAd(new AdRequest.Builder().build());*/
-
-
-
-
-
+        }
 
     }
 
+    /**
+     * Determines the view type for the given position.
+     */
     @Override
     public int getItemViewType(int position) {
-        /*if (position != 0) {
-            if (position / 9 == 0)
-                return NATIVE_AD_VIEW;
-            else
-                return IMAGE_VIEW;
-        } else*/
-            return IMAGE_VIEW;
+
+        Object recyclerViewItem = mRecyclerViewItems.get(position);
+        if (recyclerViewItem instanceof UnifiedNativeAd) {
+            return NATIVE_AD_VIEW;
+        }
+        return IMAGE_VIEW;
     }
 
     @Override
     public int getItemCount() {
-        return imageList.size();
+        return mRecyclerViewItems.size();
     }
 
     public class MyViewHolder extends RecyclerView.ViewHolder {
@@ -166,15 +137,31 @@ public class ImageViewAdapter extends RecyclerView.Adapter<RecyclerView.ViewHold
     }
 
 
-    public class NaticeAdHolder extends RecyclerView.ViewHolder {
+    public class UnifiedNativeAdViewHolder extends RecyclerView.ViewHolder {
 
-        private ImageView image;
+        private UnifiedNativeAdView adView;
 
-        public NaticeAdHolder(@NonNull View itemView) {
-            super(itemView);
+        public UnifiedNativeAdView getAdView() {
+            return adView;
+        }
 
-            // Locate the NativeExpressAdView.
-            mAdView = (NativeExpressAdView) itemView.findViewById(R.id.adView);
+        UnifiedNativeAdViewHolder(View view) {
+            super(view);
+            adView = (UnifiedNativeAdView) view.findViewById(R.id.ad_view);
+
+            // The MediaView will display a video asset if one is present in the ad, and the
+            // first image asset otherwise.
+            adView.setMediaView((MediaView) adView.findViewById(R.id.ad_media));
+
+            // Register the view used for each individual asset.
+            adView.setHeadlineView(adView.findViewById(R.id.ad_headline));
+            adView.setBodyView(adView.findViewById(R.id.ad_body));
+            adView.setCallToActionView(adView.findViewById(R.id.ad_call_to_action));
+            adView.setIconView(adView.findViewById(R.id.ad_icon));
+            adView.setPriceView(adView.findViewById(R.id.ad_price));
+            adView.setStarRatingView(adView.findViewById(R.id.ad_stars));
+            adView.setStoreView(adView.findViewById(R.id.ad_store));
+            adView.setAdvertiserView(adView.findViewById(R.id.ad_advertiser));
         }
     }
 

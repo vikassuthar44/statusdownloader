@@ -10,126 +10,107 @@ import androidx.recyclerview.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.ImageView;
+import android.widget.RatingBar;
 import android.widget.TextView;
 import android.widget.VideoView;
 
 import com.bumptech.glide.Glide;
+import com.google.android.gms.ads.formats.MediaView;
+import com.google.android.gms.ads.formats.NativeAd;
+import com.google.android.gms.ads.formats.UnifiedNativeAd;
+import com.google.android.gms.ads.formats.UnifiedNativeAdView;
 import com.statusdownloader.R;
 
 import java.util.ArrayList;
+import java.util.List;
 
-public class VideoviewAdapter extends RecyclerView.Adapter<VideoviewAdapter.MyViewHolder> {
+public class VideoviewAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
 
     private static final String TAG = VideoviewAdapter.class.getSimpleName();
 
+    private static final int IMAGE_VIEW = 0;
+    private static final int NATIVE_AD_VIEW = 1;
     private Activity activity;
     private ArrayList<String> videoList;
 
-    public VideoviewAdapter(Activity activity, ArrayList<String> imageList) {
+    private final List<Object> mRecyclerViewItems;
+    ;
+
+    public VideoviewAdapter(Activity activity, ArrayList<String> imageList, List<Object> mRecyclerViewItems) {
 
         this.activity = activity;
         this.videoList = imageList;
-
+        this.mRecyclerViewItems = mRecyclerViewItems;
     }
 
     @NonNull
     @Override
-    public MyViewHolder onCreateViewHolder(@NonNull ViewGroup viewGroup, int i) {
-        View view = LayoutInflater.from(activity).inflate(R.layout.activity_single_video, viewGroup, false);
-        return new MyViewHolder(view);
+    public RecyclerView.ViewHolder onCreateViewHolder(@NonNull ViewGroup viewGroup, int viewType) {
+        switch (viewType) {
+            case NATIVE_AD_VIEW:
+                View unifiedNativeLayoutView = LayoutInflater.from(
+                        viewGroup.getContext()).inflate(R.layout.native_ad_layout,
+                        viewGroup, false);
+                return new UnifiedNativeAdViewHolder(unifiedNativeLayoutView);
+            case IMAGE_VIEW:
+                // Fall through.
+            default:
+                View menuItemLayoutView = LayoutInflater.from(viewGroup.getContext()).inflate(
+                        R.layout.activity_single_video, viewGroup, false);
+                return new MyViewHolder(menuItemLayoutView);
+        }
     }
 
     @Override
-    public void onBindViewHolder(@NonNull final MyViewHolder myViewHolder, final int position) {
+    public void onBindViewHolder(@NonNull final RecyclerView.ViewHolder viewHolder, final int position) {
 
-        Glide.with(activity)
-                .load(videoList.get(position))
-                .into(myViewHolder.image);
+        if (getItemViewType(position) == IMAGE_VIEW) {
 
-/*
-        Bitmap thumb = ThumbnailUtils.createVideoThumbnail(videoList.get(position),
-                MediaStore.Images.Thumbnails.MINI_KIND);
+            if(position < videoList.size()) {
+                MyViewHolder myViewHolder = (MyViewHolder) viewHolder;
+                Glide.with(activity)
+                        .load(videoList.get(position))
+                        .into(myViewHolder.image);
 
-        BitmapDrawable bitmapDrawable = new BitmapDrawable(thumb);
-        myViewHolder.image.setBackgroundDrawable(bitmapDrawable);*/
-
-        //Bitmap myBitmap = BitmapFactory.decodeFile(imageList.get(position));
-
-        //ImageView myImage = (ImageView) find ViewById(R.id.imageviewTest);
-
-        //imageView.setImageBitmap(myBitmap);
-
-        //myViewHolder.video.setVideoPath(videoList.get(position));
-
-        /*MediaPlayer.OnErrorListener mOnErrorListener = new MediaPlayer.OnErrorListener() {
-
-            @Override
-            public boolean onError(MediaPlayer mp, int what, int extra) {
-                // Your code goes here
-                return true;
+                myViewHolder.itemView.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        Intent intent = new Intent(activity, FullScreenVideoActivity.class);
+                        intent.putExtra("videoUrl", videoList.get(position));
+                        activity.startActivity(intent);
+                    }
+                });
             }
-        };*/
 
-        /*String videoUrl = videoList.get(position);
-        videoUrl = videoUrl.replace("upload/","upload/vs_20,dl_200,h_200,e_loop/").replace(".mp4",".gif").replace(".mov",".gif");
-
-
-        Glide.with(activity)
-                .asGif()
-                .load(videoUrl)
-                .placeholder(R.drawable.app_icon)
-                .into(myViewHolder.video_gif);
-*/
-       // Uri uri = Uri.parse(videoList.get(position));
-
-
-
-       /* Bitmap thumb = ThumbnailUtils.createVideoThumbnail(videoList.get(position), MediaStore.Images.Thumbnails.MINI_KIND);
-
-        BitmapDrawable bitmapDrawable = new BitmapDrawable(thumb);
-        myViewHolder.video.setBackgroundDrawable(bitmapDrawable);
-
-        myViewHolder.video.setVideoURI(uri);*/
-        //myViewHolder.video.seekTo(1);
-       //myViewHolder.video.start();
-       //myViewHolder.video.setOnErrorListener(mOnErrorListener);
-        /*myViewHolder.video.setOnPreparedListener(new MediaPlayer.OnPreparedListener() {
-
-            @Override
-            public void onPrepared(MediaPlayer mp) {
-
-                //mp.seekTo(2000);
-                //mp.setVolume(0, 0);
-                //mp.setLooping(true);
-                myViewHolder.tv_duration.setText("00." + (mp.getDuration()/1000));
-                //mp.getDuration();
-
-                Log.d(TAG, "onPrepared: " + mp.getDuration());
+        } else{
+                UnifiedNativeAd nativeAd = (UnifiedNativeAd) mRecyclerViewItems.get(position);
+                populateNativeAdView(nativeAd, ((UnifiedNativeAdViewHolder) viewHolder).getAdView());
             }
-        });*/
 
-        //myViewHolder.video.seekTo(1);
+        }
 
 
-        myViewHolder.itemView.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(activity, FullScreenVideoActivity.class);
-                intent.putExtra("videoUrl",videoList.get(position));
-                activity.startActivity(intent);
-            }
-        });
+    /**
+     * Determines the view type for the given position.
+     */
+    @Override
+    public int getItemViewType(int position) {
 
+        Object recyclerViewItem = mRecyclerViewItems.get(position);
+        if (recyclerViewItem instanceof UnifiedNativeAd) {
+            return NATIVE_AD_VIEW;
+        }
+        return IMAGE_VIEW;
     }
-
 
     @Override
     public int getItemCount() {
-        return videoList.size();
+        return mRecyclerViewItems.size();
     }
 
-    public class MyViewHolder extends RecyclerView.ViewHolder {
+    static class MyViewHolder extends RecyclerView.ViewHolder {
 
         private VideoView video;
         private TextView tv_duration;
@@ -144,6 +125,87 @@ public class VideoviewAdapter extends RecyclerView.Adapter<VideoviewAdapter.MyVi
             video_gif = (ImageView) itemView.findViewById(R.id.video_gif);
             image = (AppCompatImageView) itemView.findViewById(R.id.image);
         }
+    }
+
+
+    public class UnifiedNativeAdViewHolder extends RecyclerView.ViewHolder {
+
+        private UnifiedNativeAdView adView;
+
+        public UnifiedNativeAdView getAdView() {
+            return adView;
+        }
+
+        UnifiedNativeAdViewHolder(View view) {
+            super(view);
+            adView = (UnifiedNativeAdView) view.findViewById(R.id.ad_view);
+
+            // The MediaView will display a video asset if one is present in the ad, and the
+            // first image asset otherwise.
+            adView.setMediaView((MediaView) adView.findViewById(R.id.ad_media));
+
+            // Register the view used for each individual asset.
+            adView.setHeadlineView(adView.findViewById(R.id.ad_headline));
+            adView.setBodyView(adView.findViewById(R.id.ad_body));
+            adView.setCallToActionView(adView.findViewById(R.id.ad_call_to_action));
+            adView.setIconView(adView.findViewById(R.id.ad_icon));
+            adView.setPriceView(adView.findViewById(R.id.ad_price));
+            adView.setStarRatingView(adView.findViewById(R.id.ad_stars));
+            adView.setStoreView(adView.findViewById(R.id.ad_store));
+            adView.setAdvertiserView(adView.findViewById(R.id.ad_advertiser));
+        }
+    }
+
+
+    private void populateNativeAdView(UnifiedNativeAd nativeAd,
+                                      UnifiedNativeAdView adView) {
+        // Some assets are guaranteed to be in every UnifiedNativeAd.
+        ((TextView) adView.getHeadlineView()).setText(nativeAd.getHeadline());
+        ((TextView) adView.getBodyView()).setText(nativeAd.getBody());
+        ((Button) adView.getCallToActionView()).setText(nativeAd.getCallToAction());
+
+        // These assets aren't guaranteed to be in every UnifiedNativeAd, so it's important to
+        // check before trying to display them.
+        NativeAd.Image icon = nativeAd.getIcon();
+
+        if (icon == null) {
+            adView.getIconView().setVisibility(View.INVISIBLE);
+        } else {
+            ((ImageView) adView.getIconView()).setImageDrawable(icon.getDrawable());
+            adView.getIconView().setVisibility(View.VISIBLE);
+        }
+
+        if (nativeAd.getPrice() == null) {
+            adView.getPriceView().setVisibility(View.INVISIBLE);
+        } else {
+            adView.getPriceView().setVisibility(View.VISIBLE);
+            ((TextView) adView.getPriceView()).setText(nativeAd.getPrice());
+        }
+
+        if (nativeAd.getStore() == null) {
+            adView.getStoreView().setVisibility(View.INVISIBLE);
+        } else {
+            adView.getStoreView().setVisibility(View.VISIBLE);
+            ((TextView) adView.getStoreView()).setText(nativeAd.getStore());
+        }
+
+        if (nativeAd.getStarRating() == null) {
+            adView.getStarRatingView().setVisibility(View.INVISIBLE);
+        } else {
+            ((RatingBar) adView.getStarRatingView())
+                    .setRating(nativeAd.getStarRating().floatValue());
+            adView.getStarRatingView().setVisibility(View.VISIBLE);
+        }
+
+        if (nativeAd.getAdvertiser() == null) {
+            adView.getAdvertiserView().setVisibility(View.INVISIBLE);
+        } else {
+            ((TextView) adView.getAdvertiserView()).setText(nativeAd.getAdvertiser());
+            adView.getAdvertiserView().setVisibility(View.VISIBLE);
+        }
+
+        // Assign native ad object to the native view.
+        adView.setNativeAd(nativeAd);
     }
 
 }

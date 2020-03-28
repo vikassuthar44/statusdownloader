@@ -34,6 +34,6 @@ public class SplashActivity extends AppCompatActivity {
                startActivity(new Intent(getApplicationContext(), TabActivity.class));
             }
 
-        }, 3000L);
+        }, 2000L);
     }
 }

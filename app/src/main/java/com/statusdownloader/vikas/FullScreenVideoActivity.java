@@ -280,6 +280,12 @@ public class FullScreenVideoActivity extends AppCompatActivity implements View.O
         whatsappIntent.setType("video/*");
         whatsappIntent.addFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION);
 
+        if(interstitialAd.isLoaded()) {
+            Log.d(TAG, "downloadImage: df");
+            interstitialAd.show();
+        } else {
+            Log.d(TAG, "downloadImage: dfsd");
+        }
         try {
             startActivity(Intent.createChooser(whatsappIntent, ""));
         } catch (android.content.ActivityNotFoundException ex) {

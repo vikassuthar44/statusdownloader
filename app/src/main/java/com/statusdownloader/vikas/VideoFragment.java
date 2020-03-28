@@ -12,13 +12,16 @@ import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 
 import com.google.android.gms.ads.AdListener;
+import com.google.android.gms.ads.AdLoader;
 import com.google.android.gms.ads.AdRequest;
 import com.google.android.gms.ads.AdView;
 import com.google.android.gms.ads.MobileAds;
+import com.google.android.gms.ads.formats.UnifiedNativeAd;
 import com.statusdownloader.R;
 
 import java.io.File;
 import java.util.ArrayList;
+import java.util.List;
 
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.GridLayoutManager;
@@ -41,6 +44,20 @@ public class VideoFragment extends Fragment {
     private int data1 = 0;
     private AdView mAdView;
     private Activity activity;
+
+
+    // The number of native ads to load and display.
+    public static final int NUMBER_OF_ADS = 5;
+
+    // The AdLoader used to load ads.
+    private AdLoader adLoader;
+
+    // List of native ads that have been successfully loaded.
+    private List<UnifiedNativeAd> mNativeAds = new ArrayList<>();
+
+
+    // List of MenuItems and native ads that populate the RecyclerView.
+    private List<Object> mRecyclerViewItems = new ArrayList<>();
 
 
     public VideoFragment(Activity activity) {
@@ -121,12 +138,13 @@ public class VideoFragment extends Fragment {
             }
         });
 
-
+        recyclerView = (RecyclerView) view.findViewById(R.id.rv_image);
 
         rl_no_data_found = (LinearLayout) view.findViewById(R.id.rl_no_data_found);
 
         File fileList = new File(Environment.getExternalStorageDirectory() + "/WhatsApp/Media/.Statuses/");
 
+        loadNativeAds();
 
         File list[] = fileList.listFiles();
         if(list != null) {
@@ -137,6 +155,8 @@ public class VideoFragment extends Fragment {
                 int length = list[i].getName().length();
                 if ((list[i].getName().substring(length - 3).equals("mp4"))) {
                     videoList.add(fileList + "/" + list[i].getName());
+                    ImageListData imageListData = new ImageListData(fileList + "/" + list[i].getName());
+                    mRecyclerViewItems.add(imageListData);
                     k++;
                     data++;
                     /*if(data == 10)
@@ -147,7 +167,7 @@ public class VideoFragment extends Fragment {
 
 
             }
-            recyclerView = (RecyclerView) view.findViewById(R.id.rv_image);
+
 
 
             GridLayoutManager layoutManager = new GridLayoutManager(activity, 2);
@@ -155,7 +175,7 @@ public class VideoFragment extends Fragment {
 
             if(k != 0) {
 
-                imageviewAdapter = new VideoviewAdapter(activity, videoList);
+                imageviewAdapter = new VideoviewAdapter(activity, videoList,mRecyclerViewItems);
 
                 recyclerView.setAdapter(imageviewAdapter);
 
@@ -167,6 +187,55 @@ public class VideoFragment extends Fragment {
         }
 
 
+    }
+
+
+    private void loadNativeAds() {
+
+        AdLoader.Builder builder = new AdLoader.Builder(activity, activity.getResources().getString(R.string.ad_unit_id));
+        adLoader = builder.forUnifiedNativeAd(
+                new UnifiedNativeAd.OnUnifiedNativeAdLoadedListener() {
+                    @Override
+                    public void onUnifiedNativeAdLoaded(UnifiedNativeAd unifiedNativeAd) {
+                        // A native ad loaded successfully, check if the ad loader has finished loading
+                        // and if so, insert the ads into the list.
+                        mNativeAds.add(unifiedNativeAd);
+                        if (!adLoader.isLoading()) {
+                            insertAdsInMenuItems();
+                        }
+                    }
+                }).withAdListener(
+                new AdListener() {
+                    @Override
+                    public void onAdFailedToLoad(int errorCode) {
+                        // A native ad failed to load, check if the ad loader has finished loading
+                        // and if so, insert the ads into the list.
+                        Log.e("MainActivity", "The previous native ad failed to load. Attempting to"
+                                + " load another.");
+                        if (!adLoader.isLoading()) {
+                            insertAdsInMenuItems();
+                        }
+                    }
+                }).build();
+
+        // Load the Native ads.
+        adLoader.loadAds(new AdRequest.Builder().build(), NUMBER_OF_ADS);
+    }
+
+
+    private void insertAdsInMenuItems() {
+        if (mNativeAds.size() <= 0) {
+            return;
+        }
+
+        int offset = 15;
+        int index = 10;
+        for (UnifiedNativeAd ad: mNativeAds) {
+            if(index < mRecyclerViewItems.size()) {
+                mRecyclerViewItems.add(index, ad);
+                index = index + offset;
+            }
+        }
     }
 
 

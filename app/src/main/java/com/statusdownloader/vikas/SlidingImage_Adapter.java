@@ -38,6 +38,7 @@ public class SlidingImage_Adapter extends PagerAdapter {
     HashMap<Integer, ImageView> views = new HashMap();
 
 
+
     public SlidingImage_Adapter(Context context,Activity activity, ArrayList<String> IMAGES) {
         this.context = context;
         this.IMAGES=IMAGES;

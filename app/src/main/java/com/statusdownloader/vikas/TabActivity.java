@@ -17,11 +17,15 @@ import android.view.View;
 import android.view.animation.Animation;
 import android.widget.Button;
 import android.widget.ImageView;
+import android.widget.ProgressBar;
 import android.widget.RelativeLayout;
 import android.widget.Toast;
 
 
+import com.google.android.gms.ads.AdListener;
+import com.google.android.gms.ads.AdRequest;
 import com.google.android.gms.ads.AdView;
+import com.google.android.gms.ads.InterstitialAd;
 import com.google.android.material.tabs.TabLayout;
 import com.statusdownloader.R;
 
@@ -38,11 +42,14 @@ import androidx.fragment.app.FragmentPagerAdapter;
 import androidx.viewpager.widget.ViewPager;
 
 import java.io.File;
+import java.util.concurrent.Executors;
+import java.util.concurrent.ScheduledExecutorService;
+import java.util.concurrent.TimeUnit;
 
 
 public class TabActivity extends AppCompatActivity {
 
-    private static final String TAG = MainActivity.class.getSimpleName();
+    private static final String TAG = TabActivity.class.getSimpleName();
     private RelativeLayout rl_image,rl_video,rl_action_bar,rl_instagram,rl_share;
     private ImageView imageView;
     private AdView mAdView;
@@ -62,6 +69,8 @@ public class TabActivity extends AppCompatActivity {
     private Dialog dialog;
     // tab titles
     private String[] tabTitles = new String[]{"Images", "Videos"};
+    private InterstitialAd mInterstitialAd;
+    private ProgressBar progressBar;
 
 
     @TargetApi(Build.VERSION_CODES.LOLLIPOP)
@@ -79,10 +88,13 @@ public class TabActivity extends AppCompatActivity {
             }
         });
 
+        progressBar = findViewById(R.id.progressBar1);
+
         if(verifyStoragePermissions(TabActivity.this)) {
             // Find the view pager that will allow the user to swipe between fragments
             ViewPager viewPager = (ViewPager) findViewById(R.id.viewpager);
 
+            progressBar.setVisibility(View.GONE);
             // Create an adapter that knows which fragment should be shown on each page
             SimpleFragmentPagerAdapter adapter = new SimpleFragmentPagerAdapter(this, getSupportFragmentManager());
 
@@ -112,10 +124,84 @@ public class TabActivity extends AppCompatActivity {
             });
             dialog.show();
         }
+
+        mInterstitialAd = new InterstitialAd(this);
+
+        // set the ad unit ID
+        mInterstitialAd.setAdUnitId(getString(R.string.admob_interstitial_video_id));
+
+        ScheduledExecutorService scheduler =
+                Executors.newSingleThreadScheduledExecutor();
+        scheduler.scheduleAtFixedRate(new Runnable() {
+
+            public void run() {
+                Log.i("hello", "world");
+                runOnUiThread(new Runnable() {
+                    public void run() {
+                        if (mInterstitialAd.isLoaded()) {
+                            mInterstitialAd.show();
+                        } else {
+                            Log.d("TAG"," Interstitial not loaded");
+                        }
+
+                        prepareAd();
+
+
+                    }
+                });
+
+            }
+        }, 30, 25, TimeUnit.SECONDS);
+
+    }
+
+    private void prepareAd() {
+
+
+        AdRequest adRequest = new AdRequest.Builder().build();
+
+        // Load ads into Interstitial Ads
+        mInterstitialAd.loadAd(adRequest);
+
+        mInterstitialAd.setAdListener(new AdListener() {
+            public void onAdLoaded() {
+                showInterstitial();
+            }
+        });
+
+    }
+
+    private void showInterstitial() {
+        if (mInterstitialAd.isLoaded()) {
+            mInterstitialAd.show();
+        }
+    }
+
+    @Override
+    public void onBackPressed() {
+        InterstitialAd mInterstitialAd1 = new InterstitialAd(this);;
+        // set the ad unit ID
+        mInterstitialAd1.setAdUnitId(getString(R.string.admob_interstitial_video_id));
+        AdRequest adRequest1 = new AdRequest.Builder().build();
+
+        // Load ads into Interstitial Ads
+        mInterstitialAd1.loadAd(adRequest1);
+
+       /* mInterstitialAd1.setAdListener(new AdListener() {
+            public void onAdLoaded() {
+                if (mInterstitialAd1.isLoaded()) {
+                    mInterstitialAd1.show();
+                }
+            }
+        });*/
+        if (mInterstitialAd1.isLoaded()) {
+            mInterstitialAd1.show();
+        }
+        super.onBackPressed();
     }
 
 
-        //setupViewPager(viewPager);
+//setupViewPager(viewPager);
 
 
 
@@ -229,6 +315,7 @@ public class TabActivity extends AppCompatActivity {
                     // Find the view pager that will allow the user to swipe between fragments
                     ViewPager viewPager = (ViewPager) findViewById(R.id.viewpager);
 
+                    progressBar.setVisibility(View.GONE);
                     // Create an adapter that knows which fragment should be shown on each page
                     SimpleFragmentPagerAdapter adapter = new SimpleFragmentPagerAdapter(TabActivity.this, getSupportFragmentManager());
 

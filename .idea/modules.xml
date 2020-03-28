@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ProjectModuleManager">
+    <modules>
+      <module fileurl="file://$PROJECT_DIR$/Status Downloaders.iml" filepath="$PROJECT_DIR$/Status Downloaders.iml" group="Status Downloaders" />
+      <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" group="Status Downloaders/app" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/statusdownloader.iml" filepath="$PROJECT_DIR$/.idea/statusdownloader.iml" />
+    </modules>
+  </component>
+</project>

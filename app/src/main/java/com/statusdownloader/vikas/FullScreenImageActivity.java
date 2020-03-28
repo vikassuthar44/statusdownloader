@@ -53,6 +53,7 @@ public class FullScreenImageActivity extends AppCompatActivity implements View.O
     private SlidingImage_Adapter slidingImage_adapter;
     private static int currentPage = 0;
     private static int NUM_PAGES = 0;
+    private int noOfSwipePage = 0;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -210,6 +211,9 @@ public class FullScreenImageActivity extends AppCompatActivity implements View.O
         mPager.setAdapter(slidingImage_adapter);
         mPager.setCurrentItem(imagePosition);
 
+
+
+
        /* CirclePageIndicator indicator = (CirclePageIndicator)
                 findViewById(R.id.indicator);
 
@@ -322,6 +326,12 @@ public class FullScreenImageActivity extends AppCompatActivity implements View.O
         whatsappIntent.setType("image/*");
         whatsappIntent.addFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION);
 
+        if(interstitialAd.isLoaded()) {
+            Log.d(TAG, "downloadImage: df");
+            interstitialAd.show();
+        } else {
+            Log.d(TAG, "downloadImage: dfsd");
+        }
         try {
             startActivity(Intent.createChooser(whatsappIntent, ""));
         } catch (android.content.ActivityNotFoundException ex) {
