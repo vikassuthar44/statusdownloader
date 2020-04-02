@@ -25,12 +25,15 @@
         </intent-filter>
         </activity>
         <activity android:name=".vikas.TabActivity" />
-        <activity android:name=".instagram.InstagramSelfProfile" />
+
 
 
         <meta-data
             android:name="com.google.android.gms.ads.APPLICATION_ID"
             android:value="ca-app-pub-8344544007355635~4837394210"/>
+        <meta-data
+            android:name="preloaded_fonts"
+            android:resource="@array/preloaded_fonts" />
 
         <provider
             android:name="androidx.core.content.FileProvider"

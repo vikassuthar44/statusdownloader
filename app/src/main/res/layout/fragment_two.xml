@@ -10,6 +10,7 @@
         android:layout_height="wrap_content"
         android:text="two"
         android:textSize="40dp"
+        android:fontFamily="@font/adamina"
         android:textStyle="bold"
         android:layout_centerInParent="true"/>
 

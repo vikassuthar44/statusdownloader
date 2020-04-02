@@ -13,6 +13,8 @@ import android.os.Build;
 import android.os.Bundle;
 import android.provider.MediaStore;
 import android.util.Log;
+import android.view.Gravity;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.animation.Animation;
 import android.widget.Button;
@@ -26,6 +28,7 @@ import com.google.android.gms.ads.AdListener;
 import com.google.android.gms.ads.AdRequest;
 import com.google.android.gms.ads.AdView;
 import com.google.android.gms.ads.InterstitialAd;
+import com.google.android.material.navigation.NavigationView;
 import com.google.android.material.tabs.TabLayout;
 import com.statusdownloader.R;
 
@@ -33,9 +36,11 @@ import com.statusdownloader.R;
 import androidx.annotation.NonNull;
 import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.ActionBar;
+import androidx.appcompat.app.ActionBarDrawerToggle;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 import androidx.core.app.ActivityCompat;
+import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentPagerAdapter;
@@ -50,7 +55,7 @@ import java.util.concurrent.TimeUnit;
 public class TabActivity extends AppCompatActivity {
 
     private static final String TAG = TabActivity.class.getSimpleName();
-    private RelativeLayout rl_image,rl_video,rl_action_bar,rl_instagram,rl_share;
+    private RelativeLayout rl_image,rl_video,rl_action_bar,rl_instagram,rl_share,rl_menu;
     private ImageView imageView;
     private AdView mAdView;
     private Animation leftToRight, rightToLeft, slideDown, zoomIn;
@@ -72,6 +77,11 @@ public class TabActivity extends AppCompatActivity {
     private InterstitialAd mInterstitialAd;
     private ProgressBar progressBar;
 
+    private DrawerLayout dl;
+    private ActionBarDrawerToggle t;
+    private NavigationView nv;
+
+
 
     @TargetApi(Build.VERSION_CODES.LOLLIPOP)
     @Override
@@ -87,6 +97,50 @@ public class TabActivity extends AppCompatActivity {
                 shareAppLink();
             }
         });
+
+
+        dl = (DrawerLayout)findViewById(R.id.activity_main);
+        t = new ActionBarDrawerToggle(this, dl,R.string.Open, R.string.Close);
+
+        dl.addDrawerListener(t);
+        t.syncState();
+
+
+
+
+        nv = (NavigationView)findViewById(R.id.nv);
+        nv.setNavigationItemSelectedListener(new NavigationView.OnNavigationItemSelectedListener() {
+            @Override
+            public boolean onNavigationItemSelected(@NonNull MenuItem item) {
+                int id = item.getItemId();
+                switch(id)
+                {
+                    case R.id.how_use:
+                        Toast.makeText(TabActivity.this, "My Account",Toast.LENGTH_SHORT).show();break;
+                    case R.id.more_app:
+                        Toast.makeText(TabActivity.this, "Settings",Toast.LENGTH_SHORT).show();break;
+                    case R.id.help:
+                        Toast.makeText(TabActivity.this, "My Cart",Toast.LENGTH_SHORT).show();break;
+                    default:
+                        return true;
+                }
+
+
+                return true;
+
+            }
+        });
+
+        rl_menu = (RelativeLayout) findViewById(R.id.rl_menu);
+        rl_menu.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if(!dl.isDrawerOpen(Gravity.LEFT) )
+                    dl.openDrawer(Gravity.LEFT );
+                else dl.closeDrawer(Gravity.RIGHT);
+            }
+        });
+
 
         progressBar = findViewById(R.id.progressBar1);
 
@@ -153,6 +207,15 @@ public class TabActivity extends AppCompatActivity {
             }
         }, 30, 25, TimeUnit.SECONDS);
 
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+
+        if(t.onOptionsItemSelected(item))
+            return true;
+
+        return super.onOptionsItemSelected(item);
     }
 
     private void prepareAd() {

@@ -30,6 +30,7 @@
             android:layout_height="wrap_content"
             android:layout_gravity="center_horizontal"
             android:text="No Data Found"
+            android:fontFamily="@font/adamina"
             android:textSize="25sp"
             android:textColor="@color/colorAccent"
             android:textStyle="italic"/>

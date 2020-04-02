@@ -276,7 +276,7 @@ public class FullScreenVideoActivity extends AppCompatActivity implements View.O
         Intent whatsappIntent = new Intent(Intent.ACTION_SEND);
         whatsappIntent.setType("text/plain");
         whatsappIntent.putExtra(Intent.EXTRA_STREAM, imgUri);
-        whatsappIntent.putExtra(Intent.EXTRA_TEXT, "If you want to save or share your friend's status, please click on this link \n https://status-donwloaders.web.app/");
+        whatsappIntent.putExtra(Intent.EXTRA_TEXT, "If you want to save or share your friend's status, please click on this link \n https://play.google.com/store/apps/details?id=com.statusdownloader.vikas&hl=en");
         whatsappIntent.setType("video/*");
         whatsappIntent.addFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION);
 

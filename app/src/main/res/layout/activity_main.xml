@@ -28,6 +28,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Status Downloaders"
+            android:fontFamily="@font/adamina"
             android:textStyle="italic"
             android:layout_centerInParent="true"
             android:layout_centerVertical="true"
@@ -80,6 +81,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Whats App Status Image's"
+                android:fontFamily="@font/adamina"
                 android:layout_centerInParent="true"
                 android:textColor="@color/white"
                 android:textSize="20sp"
@@ -104,9 +106,10 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Whats App status Video's"
+            android:fontFamily="@font/adamina"
                 android:textColor="@color/white"
                 android:textSize="20sp"
-            android:textStyle="italic"
+
                 android:layout_centerInParent="true"/>
 
 
@@ -126,6 +129,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Instagram profile and other photos Donwload"
+                android:fontFamily="@font/adamina"
                 android:gravity="center"
                 android:padding="@dimen/ten_dp"
                 android:textColor="@color/white"

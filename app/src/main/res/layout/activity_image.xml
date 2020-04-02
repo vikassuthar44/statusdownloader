@@ -29,6 +29,7 @@
             android:text="@string/images"
             android:textColor="@color/white"
             android:textSize="@dimen/thirty_sp"
+            android:fontFamily="@font/adamina"
             android:textStyle="italic"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -61,6 +62,7 @@
             android:layout_height="wrap_content"
             android:layout_gravity="center_horizontal"
             android:text="No Data Found"
+            android:fontFamily="@font/adamina"
             android:textSize="25sp"
             android:textColor="@color/colorAccent"
             android:textStyle="italic"/>

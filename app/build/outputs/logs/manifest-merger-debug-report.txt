@@ -1,9 +1,9 @@
 -- Merging decision tree log ---
 manifest
-ADDED from /Users/3embed/Desktop/vikas/statusdownloader/app/src/main/AndroidManifest.xml:2:1-47:12
-INJECTED from /Users/3embed/Desktop/vikas/statusdownloader/app/src/main/AndroidManifest.xml:2:1-47:12
-INJECTED from /Users/3embed/Desktop/vikas/statusdownloader/app/src/main/AndroidManifest.xml:2:1-47:12
-INJECTED from /Users/3embed/Desktop/vikas/statusdownloader/app/src/main/AndroidManifest.xml:2:1-47:12
+ADDED from /Users/3embed/Desktop/vikas/statusdownloader/app/src/main/AndroidManifest.xml:2:1-50:12
+INJECTED from /Users/3embed/Desktop/vikas/statusdownloader/app/src/main/AndroidManifest.xml:2:1-50:12
+INJECTED from /Users/3embed/Desktop/vikas/statusdownloader/app/src/main/AndroidManifest.xml:2:1-50:12
+INJECTED from /Users/3embed/Desktop/vikas/statusdownloader/app/src/main/AndroidManifest.xml:2:1-50:12
 MERGED from [com.google.android.material:material:1.0.0] /Users/3embed/.gradle/caches/transforms-2/files-2.1/2277f3c7e4e6174e8829917fc212667e/AndroidManifest.xml:17:1-24:12
 MERGED from [com.bogdwellers:pinchtozoom:0.1] /Users/3embed/.gradle/caches/transforms-2/files-2.1/6b2b8a206dc9e61ab2f1895a8e3ea5cd/AndroidManifest.xml:2:1-17:12
 MERGED from [androidx.appcompat:appcompat:1.0.0] /Users/3embed/.gradle/caches/transforms-2/files-2.1/b20f72049212ec6a3f78d6ad25d6f035/AndroidManifest.xml:17:1-22:12
@@ -61,20 +61,20 @@ MERGED from [androidx.lifecycle:lifecycle-livedata-core:2.0.0] /Users/3embed/.gr
 MERGED from [androidx.arch.core:core-runtime:2.0.0] /Users/3embed/.gradle/caches/transforms-2/files-2.1/832d1559cb50dac791960f903d020c4d/AndroidManifest.xml:17:1-22:12
 MERGED from [androidx.interpolator:interpolator:1.0.0] /Users/3embed/.gradle/caches/transforms-2/files-2.1/5a4b78bef65fe9ad91aa463c18eedd65/AndroidManifest.xml:17:1-22:12
 MERGED from [com.google.android.gms:play-services-ads-base:18.1.1] /Users/3embed/.gradle/caches/transforms-2/files-2.1/7f9146a0f74565c1f2124719b299c558/AndroidManifest.xml:2:1-9:12
-INJECTED from /Users/3embed/Desktop/vikas/statusdownloader/app/src/main/AndroidManifest.xml:2:1-47:12
-INJECTED from /Users/3embed/Desktop/vikas/statusdownloader/app/src/main/AndroidManifest.xml:2:1-47:12
-INJECTED from /Users/3embed/Desktop/vikas/statusdownloader/app/src/main/AndroidManifest.xml:2:1-47:12
+INJECTED from /Users/3embed/Desktop/vikas/statusdownloader/app/src/main/AndroidManifest.xml:2:1-50:12
+INJECTED from /Users/3embed/Desktop/vikas/statusdownloader/app/src/main/AndroidManifest.xml:2:1-50:12
+INJECTED from /Users/3embed/Desktop/vikas/statusdownloader/app/src/main/AndroidManifest.xml:2:1-50:12
 	package
 		ADDED from /Users/3embed/Desktop/vikas/statusdownloader/app/src/main/AndroidManifest.xml:3:5-35
 		INJECTED from /Users/3embed/Desktop/vikas/statusdownloader/app/src/main/AndroidManifest.xml
 		INJECTED from /Users/3embed/Desktop/vikas/statusdownloader/app/src/main/AndroidManifest.xml
 	android:versionName
 		INJECTED from /Users/3embed/Desktop/vikas/statusdownloader/app/src/main/AndroidManifest.xml
-		ADDED from /Users/3embed/Desktop/vikas/statusdownloader/app/src/main/AndroidManifest.xml:2:1-47:12
+		ADDED from /Users/3embed/Desktop/vikas/statusdownloader/app/src/main/AndroidManifest.xml:2:1-50:12
 		INJECTED from /Users/3embed/Desktop/vikas/statusdownloader/app/src/main/AndroidManifest.xml
 	android:versionCode
 		INJECTED from /Users/3embed/Desktop/vikas/statusdownloader/app/src/main/AndroidManifest.xml
-		ADDED from /Users/3embed/Desktop/vikas/statusdownloader/app/src/main/AndroidManifest.xml:2:1-47:12
+		ADDED from /Users/3embed/Desktop/vikas/statusdownloader/app/src/main/AndroidManifest.xml:2:1-50:12
 		INJECTED from /Users/3embed/Desktop/vikas/statusdownloader/app/src/main/AndroidManifest.xml
 	xmlns:android
 		ADDED from /Users/3embed/Desktop/vikas/statusdownloader/app/src/main/AndroidManifest.xml:2:11-69
@@ -87,7 +87,7 @@ ADDED from /Users/3embed/Desktop/vikas/statusdownloader/app/src/main/AndroidMani
 	android:name
 		ADDED from /Users/3embed/Desktop/vikas/statusdownloader/app/src/main/AndroidManifest.xml:7:22-77
 application
-ADDED from /Users/3embed/Desktop/vikas/statusdownloader/app/src/main/AndroidManifest.xml:9:5-45:19
+ADDED from /Users/3embed/Desktop/vikas/statusdownloader/app/src/main/AndroidManifest.xml:9:5-48:19
 MERGED from [com.google.android.material:material:1.0.0] /Users/3embed/.gradle/caches/transforms-2/files-2.1/2277f3c7e4e6174e8829917fc212667e/AndroidManifest.xml:22:5-20
 MERGED from [com.google.android.material:material:1.0.0] /Users/3embed/.gradle/caches/transforms-2/files-2.1/2277f3c7e4e6174e8829917fc212667e/AndroidManifest.xml:22:5-20
 MERGED from [com.bogdwellers:pinchtozoom:0.1] /Users/3embed/.gradle/caches/transforms-2/files-2.1/6b2b8a206dc9e61ab2f1895a8e3ea5cd/AndroidManifest.xml:11:5-15:19
@@ -190,32 +190,34 @@ activity#com.statusdownloader.vikas.TabActivity
 ADDED from /Users/3embed/Desktop/vikas/statusdownloader/app/src/main/AndroidManifest.xml:27:9-55
 	android:name
 		ADDED from /Users/3embed/Desktop/vikas/statusdownloader/app/src/main/AndroidManifest.xml:27:19-52
-activity#com.statusdownloader.instagram.InstagramSelfProfile
-ADDED from /Users/3embed/Desktop/vikas/statusdownloader/app/src/main/AndroidManifest.xml:28:9-68
-	android:name
-		ADDED from /Users/3embed/Desktop/vikas/statusdownloader/app/src/main/AndroidManifest.xml:28:19-65
 meta-data#com.google.android.gms.ads.APPLICATION_ID
 ADDED from /Users/3embed/Desktop/vikas/statusdownloader/app/src/main/AndroidManifest.xml:31:9-33:69
 	android:value
 		ADDED from /Users/3embed/Desktop/vikas/statusdownloader/app/src/main/AndroidManifest.xml:33:13-67
 	android:name
 		ADDED from /Users/3embed/Desktop/vikas/statusdownloader/app/src/main/AndroidManifest.xml:32:13-69
-provider#androidx.core.content.FileProvider
-ADDED from /Users/3embed/Desktop/vikas/statusdownloader/app/src/main/AndroidManifest.xml:35:9-43:20
-	android:grantUriPermissions
-		ADDED from /Users/3embed/Desktop/vikas/statusdownloader/app/src/main/AndroidManifest.xml:39:13-47
-	android:authorities
-		ADDED from /Users/3embed/Desktop/vikas/statusdownloader/app/src/main/AndroidManifest.xml:37:13-68
-	android:exported
-		ADDED from /Users/3embed/Desktop/vikas/statusdownloader/app/src/main/AndroidManifest.xml:38:13-37
-	android:name
-		ADDED from /Users/3embed/Desktop/vikas/statusdownloader/app/src/main/AndroidManifest.xml:36:13-62
-meta-data#android.support.FILE_PROVIDER_PATHS
-ADDED from /Users/3embed/Desktop/vikas/statusdownloader/app/src/main/AndroidManifest.xml:40:13-42:57
+meta-data#preloaded_fonts
+ADDED from /Users/3embed/Desktop/vikas/statusdownloader/app/src/main/AndroidManifest.xml:34:9-36:57
 	android:resource
-		ADDED from /Users/3embed/Desktop/vikas/statusdownloader/app/src/main/AndroidManifest.xml:42:17-55
+		ADDED from /Users/3embed/Desktop/vikas/statusdownloader/app/src/main/AndroidManifest.xml:36:13-54
 	android:name
-		ADDED from /Users/3embed/Desktop/vikas/statusdownloader/app/src/main/AndroidManifest.xml:41:17-67
+		ADDED from /Users/3embed/Desktop/vikas/statusdownloader/app/src/main/AndroidManifest.xml:35:13-43
+provider#androidx.core.content.FileProvider
+ADDED from /Users/3embed/Desktop/vikas/statusdownloader/app/src/main/AndroidManifest.xml:38:9-46:20
+	android:grantUriPermissions
+		ADDED from /Users/3embed/Desktop/vikas/statusdownloader/app/src/main/AndroidManifest.xml:42:13-47
+	android:authorities
+		ADDED from /Users/3embed/Desktop/vikas/statusdownloader/app/src/main/AndroidManifest.xml:40:13-68
+	android:exported
+		ADDED from /Users/3embed/Desktop/vikas/statusdownloader/app/src/main/AndroidManifest.xml:41:13-37
+	android:name
+		ADDED from /Users/3embed/Desktop/vikas/statusdownloader/app/src/main/AndroidManifest.xml:39:13-62
+meta-data#android.support.FILE_PROVIDER_PATHS
+ADDED from /Users/3embed/Desktop/vikas/statusdownloader/app/src/main/AndroidManifest.xml:43:13-45:57
+	android:resource
+		ADDED from /Users/3embed/Desktop/vikas/statusdownloader/app/src/main/AndroidManifest.xml:45:17-55
+	android:name
+		ADDED from /Users/3embed/Desktop/vikas/statusdownloader/app/src/main/AndroidManifest.xml:44:17-67
 uses-sdk
 INJECTED from /Users/3embed/Desktop/vikas/statusdownloader/app/src/main/AndroidManifest.xml reason: use-sdk injection requested
 INJECTED from /Users/3embed/Desktop/vikas/statusdownloader/app/src/main/AndroidManifest.xml

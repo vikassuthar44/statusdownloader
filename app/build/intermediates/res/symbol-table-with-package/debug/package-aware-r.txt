@@ -29,6 +29,10 @@ animator mtrl_fab_hide_motion_spec
 animator mtrl_fab_show_motion_spec
 animator mtrl_fab_transformation_sheet_collapse_spec
 animator mtrl_fab_transformation_sheet_expand_spec
+array com_google_android_gms_fonts_certs
+array com_google_android_gms_fonts_certs_dev
+array com_google_android_gms_fonts_certs_prod
+array preloaded_fonts
 attr actionBarDivider
 attr actionBarItemBackground
 attr actionBarPopupTheme
@@ -724,6 +728,7 @@ color switch_thumb_normal_material_dark
 color switch_thumb_normal_material_light
 color tooltip_background_dark
 color tooltip_background_light
+color user_profile_icon_background
 color white
 dimen abc_action_bar_content_inset_material
 dimen abc_action_bar_content_inset_with_nav
@@ -1068,13 +1073,16 @@ drawable design_snackbar_background
 drawable googleg_disabled_color_18
 drawable googleg_standard_color_18
 drawable half_transparent
+drawable ic_apps_black_24dp
 drawable ic_back
 drawable ic_download
+drawable ic_help_black_24dp
 drawable ic_help_outline_black_24dp
 drawable ic_icon
 drawable ic_launcher_background
 drawable ic_launcher_foreground
 drawable ic_left_arrow
+drawable ic_menu_black_24dp
 drawable ic_mtrl_chip_checked_black
 drawable ic_mtrl_chip_checked_circle
 drawable ic_mtrl_chip_close_circle
@@ -1100,7 +1108,11 @@ drawable notify_panel_notification_icon_bg
 drawable splash
 drawable tooltip_frame_dark
 drawable tooltip_frame_light
+drawable user_profile_background
+drawable user_profile_foreground
+drawable user_profile_icon_foreground
 drawable video_icon
+font adamina
 id ALT
 id CTRL
 id FUNCTION
@@ -1127,6 +1139,7 @@ id action_mode_close_button
 id action_text
 id actions
 id activity_chooser_view_content
+id activity_main
 id adView
 id ad_advertiser
 id ad_attribution
@@ -1201,8 +1214,10 @@ id ghost_view
 id glide_custom_view_target_tag
 id gone
 id group_divider
+id help
 id home
 id homeAsUp
+id how_use
 id icon
 id icon_group
 id icon_only
@@ -1228,6 +1243,7 @@ id masked
 id message
 id middle
 id mini
+id more_app
 id mtrl_child_content_container
 id mtrl_internal_children_alpha_tag
 id multiply
@@ -1238,6 +1254,7 @@ id normal
 id notification_background
 id notification_main_column
 id notification_main_column_container
+id nv
 id outline
 id packed
 id pager
@@ -1247,7 +1264,7 @@ id parentPanel
 id parent_matrix
 id percent
 id pin
-id profile_photos
+id profile_icon
 id progressBar1
 id progress_circular
 id progress_horizontal
@@ -1261,6 +1278,7 @@ id rl_back_arrow
 id rl_download
 id rl_image
 id rl_instagram
+id rl_menu
 id rl_no_data_found
 id rl_share
 id rl_video
@@ -1344,6 +1362,7 @@ id uniform
 id unlabeled
 id up
 id useLogo
+id user_name
 id video
 id video_gif
 id view_offset_helper
@@ -1409,6 +1428,7 @@ layout activity_new
 layout activity_single_video
 layout activity_splash
 layout app_bar
+layout app_bar_main
 layout browser_actions_context_menu_page
 layout browser_actions_context_menu_row
 layout design_bottom_navigation_item
@@ -1428,10 +1448,10 @@ layout design_text_input_password_icon
 layout fragment_one
 layout fragment_two
 layout home_page_activity
-layout instagram_self_profile
 layout mtrl_layout_snackbar
 layout mtrl_layout_snackbar_include
 layout native_ad_layout
+layout nav_header
 layout notification_action
 layout notification_action_tombstone
 layout notification_template_custom_big
@@ -1446,8 +1466,15 @@ layout slidingimages_layout
 layout slidingvideo_layout
 layout storage_permission_dialog
 layout support_simple_spinner_dropdown_item
+menu navigation_menu
 mipmap ic_launcher
 mipmap ic_launcher_round
+mipmap user_profile
+mipmap user_profile_icon
+mipmap user_profile_icon_round
+mipmap user_profile_round
+string Close
+string Open
 string abc_action_bar_home_description
 string abc_action_bar_up_description
 string abc_action_menu_overflow_description
@@ -1529,6 +1556,7 @@ string hide_bottom_view_on_scroll_behavior
 string image
 string images
 string mtrl_chip_close_icon_content_description
+string native_ad_id
 string password_toggle_content_description
 string path_password_eye
 string path_password_eye_mask_strike_through
