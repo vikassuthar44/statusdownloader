@@ -4,6 +4,8 @@ ADDED from /Users/3embed/Desktop/vikas/statusdownloader/app/src/main/AndroidMani
 INJECTED from /Users/3embed/Desktop/vikas/statusdownloader/app/src/main/AndroidManifest.xml:2:1-50:12
 INJECTED from /Users/3embed/Desktop/vikas/statusdownloader/app/src/main/AndroidManifest.xml:2:1-50:12
 INJECTED from /Users/3embed/Desktop/vikas/statusdownloader/app/src/main/AndroidManifest.xml:2:1-50:12
+MERGED from [androidx.databinding:databinding-adapters:3.3.1] /Users/3embed/.gradle/caches/transforms-2/files-2.1/8654a5b8a9ccd4379b0b3095e44281ff/AndroidManifest.xml:17:1-24:12
+MERGED from [androidx.databinding:databinding-runtime:3.3.1] /Users/3embed/.gradle/caches/transforms-2/files-2.1/b592184d7dab7287285e396b6a806b05/AndroidManifest.xml:17:1-24:12
 MERGED from [com.google.android.material:material:1.0.0] /Users/3embed/.gradle/caches/transforms-2/files-2.1/2277f3c7e4e6174e8829917fc212667e/AndroidManifest.xml:17:1-24:12
 MERGED from [com.bogdwellers:pinchtozoom:0.1] /Users/3embed/.gradle/caches/transforms-2/files-2.1/6b2b8a206dc9e61ab2f1895a8e3ea5cd/AndroidManifest.xml:2:1-17:12
 MERGED from [androidx.appcompat:appcompat:1.0.0] /Users/3embed/.gradle/caches/transforms-2/files-2.1/b20f72049212ec6a3f78d6ad25d6f035/AndroidManifest.xml:17:1-22:12
@@ -48,9 +50,9 @@ MERGED from [androidx.asynclayoutinflater:asynclayoutinflater:1.0.0] /Users/3emb
 MERGED from [androidx.core:core:1.0.0] /Users/3embed/.gradle/caches/transforms-2/files-2.1/dcee0dfeede4a5f2d84e1b6268def212/AndroidManifest.xml:17:1-24:12
 MERGED from [androidx.constraintlayout:constraintlayout:1.1.2] /Users/3embed/.gradle/caches/transforms-2/files-2.1/1ac219531e6e200cf7489ffe897c436e/AndroidManifest.xml:2:1-11:12
 MERGED from [androidx.cardview:cardview:1.0.0] /Users/3embed/.gradle/caches/transforms-2/files-2.1/53eb52f1b1bd8116a6e1959f815b30f4/AndroidManifest.xml:17:1-22:12
+MERGED from [androidx.lifecycle:lifecycle-runtime:2.0.0] /Users/3embed/.gradle/caches/transforms-2/files-2.1/d31e11071b4f69ba69279a68f2034e37/AndroidManifest.xml:17:1-22:12
 MERGED from [androidx.versionedparcelable:versionedparcelable:1.0.0] /Users/3embed/.gradle/caches/transforms-2/files-2.1/aae5a5881e358a327288219303335dac/AndroidManifest.xml:17:1-25:12
 MERGED from [androidx.cursoradapter:cursoradapter:1.0.0] /Users/3embed/.gradle/caches/transforms-2/files-2.1/312b969cb2fe2772e8756b4fd57fb9d0/AndroidManifest.xml:17:1-22:12
-MERGED from [androidx.lifecycle:lifecycle-runtime:2.0.0] /Users/3embed/.gradle/caches/transforms-2/files-2.1/d31e11071b4f69ba69279a68f2034e37/AndroidManifest.xml:17:1-22:12
 MERGED from [com.github.bumptech.glide:gifdecoder:4.9.0] /Users/3embed/.gradle/caches/transforms-2/files-2.1/f7b2de6838475237107ea538d7a74432/AndroidManifest.xml:2:1-11:12
 MERGED from [androidx.documentfile:documentfile:1.0.0] /Users/3embed/.gradle/caches/transforms-2/files-2.1/1402992860aec80b4db5adcf2db0fc35/AndroidManifest.xml:17:1-22:12
 MERGED from [androidx.localbroadcastmanager:localbroadcastmanager:1.0.0] /Users/3embed/.gradle/caches/transforms-2/files-2.1/20cd21e415b3bbdf1b0c3ed351215f2e/AndroidManifest.xml:17:1-22:12
@@ -222,6 +224,10 @@ uses-sdk
 INJECTED from /Users/3embed/Desktop/vikas/statusdownloader/app/src/main/AndroidManifest.xml reason: use-sdk injection requested
 INJECTED from /Users/3embed/Desktop/vikas/statusdownloader/app/src/main/AndroidManifest.xml
 INJECTED from /Users/3embed/Desktop/vikas/statusdownloader/app/src/main/AndroidManifest.xml
+MERGED from [androidx.databinding:databinding-adapters:3.3.1] /Users/3embed/.gradle/caches/transforms-2/files-2.1/8654a5b8a9ccd4379b0b3095e44281ff/AndroidManifest.xml:22:5-44
+MERGED from [androidx.databinding:databinding-adapters:3.3.1] /Users/3embed/.gradle/caches/transforms-2/files-2.1/8654a5b8a9ccd4379b0b3095e44281ff/AndroidManifest.xml:22:5-44
+MERGED from [androidx.databinding:databinding-runtime:3.3.1] /Users/3embed/.gradle/caches/transforms-2/files-2.1/b592184d7dab7287285e396b6a806b05/AndroidManifest.xml:22:5-44
+MERGED from [androidx.databinding:databinding-runtime:3.3.1] /Users/3embed/.gradle/caches/transforms-2/files-2.1/b592184d7dab7287285e396b6a806b05/AndroidManifest.xml:22:5-44
 MERGED from [com.google.android.material:material:1.0.0] /Users/3embed/.gradle/caches/transforms-2/files-2.1/2277f3c7e4e6174e8829917fc212667e/AndroidManifest.xml:20:5-44
 MERGED from [com.google.android.material:material:1.0.0] /Users/3embed/.gradle/caches/transforms-2/files-2.1/2277f3c7e4e6174e8829917fc212667e/AndroidManifest.xml:20:5-44
 MERGED from [com.bogdwellers:pinchtozoom:0.1] /Users/3embed/.gradle/caches/transforms-2/files-2.1/6b2b8a206dc9e61ab2f1895a8e3ea5cd/AndroidManifest.xml:7:5-9:41
@@ -310,12 +316,12 @@ MERGED from [androidx.constraintlayout:constraintlayout:1.1.2] /Users/3embed/.gr
 MERGED from [androidx.constraintlayout:constraintlayout:1.1.2] /Users/3embed/.gradle/caches/transforms-2/files-2.1/1ac219531e6e200cf7489ffe897c436e/AndroidManifest.xml:5:5-7:41
 MERGED from [androidx.cardview:cardview:1.0.0] /Users/3embed/.gradle/caches/transforms-2/files-2.1/53eb52f1b1bd8116a6e1959f815b30f4/AndroidManifest.xml:20:5-44
 MERGED from [androidx.cardview:cardview:1.0.0] /Users/3embed/.gradle/caches/transforms-2/files-2.1/53eb52f1b1bd8116a6e1959f815b30f4/AndroidManifest.xml:20:5-44
+MERGED from [androidx.lifecycle:lifecycle-runtime:2.0.0] /Users/3embed/.gradle/caches/transforms-2/files-2.1/d31e11071b4f69ba69279a68f2034e37/AndroidManifest.xml:20:5-44
+MERGED from [androidx.lifecycle:lifecycle-runtime:2.0.0] /Users/3embed/.gradle/caches/transforms-2/files-2.1/d31e11071b4f69ba69279a68f2034e37/AndroidManifest.xml:20:5-44
 MERGED from [androidx.versionedparcelable:versionedparcelable:1.0.0] /Users/3embed/.gradle/caches/transforms-2/files-2.1/aae5a5881e358a327288219303335dac/AndroidManifest.xml:20:5-44
 MERGED from [androidx.versionedparcelable:versionedparcelable:1.0.0] /Users/3embed/.gradle/caches/transforms-2/files-2.1/aae5a5881e358a327288219303335dac/AndroidManifest.xml:20:5-44
 MERGED from [androidx.cursoradapter:cursoradapter:1.0.0] /Users/3embed/.gradle/caches/transforms-2/files-2.1/312b969cb2fe2772e8756b4fd57fb9d0/AndroidManifest.xml:20:5-44
 MERGED from [androidx.cursoradapter:cursoradapter:1.0.0] /Users/3embed/.gradle/caches/transforms-2/files-2.1/312b969cb2fe2772e8756b4fd57fb9d0/AndroidManifest.xml:20:5-44
-MERGED from [androidx.lifecycle:lifecycle-runtime:2.0.0] /Users/3embed/.gradle/caches/transforms-2/files-2.1/d31e11071b4f69ba69279a68f2034e37/AndroidManifest.xml:20:5-44
-MERGED from [androidx.lifecycle:lifecycle-runtime:2.0.0] /Users/3embed/.gradle/caches/transforms-2/files-2.1/d31e11071b4f69ba69279a68f2034e37/AndroidManifest.xml:20:5-44
 MERGED from [com.github.bumptech.glide:gifdecoder:4.9.0] /Users/3embed/.gradle/caches/transforms-2/files-2.1/f7b2de6838475237107ea538d7a74432/AndroidManifest.xml:5:5-7:41
 MERGED from [com.github.bumptech.glide:gifdecoder:4.9.0] /Users/3embed/.gradle/caches/transforms-2/files-2.1/f7b2de6838475237107ea538d7a74432/AndroidManifest.xml:5:5-7:41
 MERGED from [androidx.documentfile:documentfile:1.0.0] /Users/3embed/.gradle/caches/transforms-2/files-2.1/1402992860aec80b4db5adcf2db0fc35/AndroidManifest.xml:20:5-44

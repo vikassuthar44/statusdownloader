@@ -3,6 +3,7 @@ package com.statusdownloader.vikas;
 import android.Manifest;
 import android.annotation.TargetApi;
 import android.app.Activity;
+import android.app.AlertDialog;
 import android.app.Dialog;
 import android.content.Context;
 import android.content.Intent;
@@ -21,6 +22,7 @@ import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.ProgressBar;
 import android.widget.RelativeLayout;
+import android.widget.TextView;
 import android.widget.Toast;
 
 
@@ -30,6 +32,7 @@ import com.google.android.gms.ads.AdView;
 import com.google.android.gms.ads.InterstitialAd;
 import com.google.android.material.navigation.NavigationView;
 import com.google.android.material.tabs.TabLayout;
+import com.statusdownloader.BuildConfig;
 import com.statusdownloader.R;
 
 
@@ -55,7 +58,7 @@ import java.util.concurrent.TimeUnit;
 public class TabActivity extends AppCompatActivity {
 
     private static final String TAG = TabActivity.class.getSimpleName();
-    private RelativeLayout rl_image,rl_video,rl_action_bar,rl_instagram,rl_share,rl_menu;
+    private RelativeLayout rl_image, rl_video, rl_action_bar, rl_instagram, rl_share, rl_menu;
     private ImageView imageView;
     private AdView mAdView;
     private Animation leftToRight, rightToLeft, slideDown, zoomIn;
@@ -81,6 +84,7 @@ public class TabActivity extends AppCompatActivity {
     private ActionBarDrawerToggle t;
     private NavigationView nv;
 
+    private TextView app_version;
 
 
     @TargetApi(Build.VERSION_CODES.LOLLIPOP)
@@ -99,8 +103,8 @@ public class TabActivity extends AppCompatActivity {
         });
 
 
-        dl = (DrawerLayout)findViewById(R.id.activity_main);
-        t = new ActionBarDrawerToggle(this, dl,R.string.Open, R.string.Close);
+        dl = (DrawerLayout) findViewById(R.id.activity_main);
+        t = new ActionBarDrawerToggle(this, dl, R.string.Open, R.string.Close);
 
         dl.addDrawerListener(t);
         t.syncState();
@@ -108,19 +112,60 @@ public class TabActivity extends AppCompatActivity {
 
 
 
-        nv = (NavigationView)findViewById(R.id.nv);
+        nv = (NavigationView) findViewById(R.id.nv);
+
+       /* app_version = (TextView) nv.findViewById(R.id.app_version);
+        try {
+            String versionName = this.getPackageManager().getPackageInfo(this.getPackageName(), 0).versionName;
+            if (!versionName.isEmpty())
+                app_version.setText(versionName);
+        } catch (PackageManager.NameNotFoundException e) {
+            e.printStackTrace();
+        }*/
+
         nv.setNavigationItemSelectedListener(new NavigationView.OnNavigationItemSelectedListener() {
             @Override
             public boolean onNavigationItemSelected(@NonNull MenuItem item) {
                 int id = item.getItemId();
-                switch(id)
-                {
+                switch (id) {
                     case R.id.how_use:
-                        Toast.makeText(TabActivity.this, "My Account",Toast.LENGTH_SHORT).show();break;
+                        dl.closeDrawers();
+                        Dialog helpDailog = new Dialog(TabActivity.this);
+                        helpDailog.setContentView(R.layout.dailo_help);
+                        helpDailog.show();
+
+                        TextView ok = helpDailog.findViewById(R.id.ok);
+                        ok.setOnClickListener(new View.OnClickListener() {
+                            @Override
+                            public void onClick(View v) {
+                                helpDailog.dismiss();
+                            }
+                        });
+
+                        break;
                     case R.id.more_app:
-                        Toast.makeText(TabActivity.this, "Settings",Toast.LENGTH_SHORT).show();break;
+                        final String appPackageName = getPackageName(); // getPackageName() from Context or Activity object
+                        try {
+                            startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse("market://details?id=" + appPackageName)));
+                        } catch (android.content.ActivityNotFoundException anfe) {
+                            startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse("https://play.google.com/store/apps/details?id=" + appPackageName)));
+                        }
+                        break;
+                    case R.id.rate:
+                        final String appPackageName1 = getPackageName(); // getPackageName() from Context or Activity object
+                        try {
+                            startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse("market://details?id=" + appPackageName1)));
+                        } catch (android.content.ActivityNotFoundException anfe) {
+                            startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse("https://play.google.com/store/apps/details?id=" + appPackageName1)));
+                        }
+                        break;
                     case R.id.help:
-                        Toast.makeText(TabActivity.this, "My Cart",Toast.LENGTH_SHORT).show();break;
+                        Toast.makeText(TabActivity.this, "My Cart", Toast.LENGTH_SHORT).show();
+                        break;
+
+                    case R.id.share:
+                        shareAppLink();
+                        break;
                     default:
                         return true;
                 }
@@ -135,8 +180,8 @@ public class TabActivity extends AppCompatActivity {
         rl_menu.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if(!dl.isDrawerOpen(Gravity.LEFT) )
-                    dl.openDrawer(Gravity.LEFT );
+                if (!dl.isDrawerOpen(Gravity.LEFT))
+                    dl.openDrawer(Gravity.LEFT);
                 else dl.closeDrawer(Gravity.RIGHT);
             }
         });
@@ -144,7 +189,7 @@ public class TabActivity extends AppCompatActivity {
 
         progressBar = findViewById(R.id.progressBar1);
 
-        if(verifyStoragePermissions(TabActivity.this)) {
+        if (verifyStoragePermissions(TabActivity.this)) {
             // Find the view pager that will allow the user to swipe between fragments
             ViewPager viewPager = (ViewPager) findViewById(R.id.viewpager);
 
@@ -169,7 +214,7 @@ public class TabActivity extends AppCompatActivity {
                 @Override
                 public void onClick(View view) {
                     dialog.dismiss();
-                    if(verifyStoragePermissions(TabActivity.this)){
+                    if (verifyStoragePermissions(TabActivity.this)) {
 
                     } else {
                         dialog.show();
@@ -195,7 +240,7 @@ public class TabActivity extends AppCompatActivity {
                         if (mInterstitialAd.isLoaded()) {
                             mInterstitialAd.show();
                         } else {
-                            Log.d("TAG"," Interstitial not loaded");
+                            Log.d("TAG", " Interstitial not loaded");
                         }
 
                         prepareAd();
@@ -205,15 +250,16 @@ public class TabActivity extends AppCompatActivity {
                 });
 
             }
-        }, 30, 25, TimeUnit.SECONDS);
+        }, 3000, 2005, TimeUnit.SECONDS);
 
     }
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
 
-        if(t.onOptionsItemSelected(item))
+        if (t.onOptionsItemSelected(item))
             return true;
+
 
         return super.onOptionsItemSelected(item);
     }
@@ -242,7 +288,8 @@ public class TabActivity extends AppCompatActivity {
 
     @Override
     public void onBackPressed() {
-        InterstitialAd mInterstitialAd1 = new InterstitialAd(this);;
+        InterstitialAd mInterstitialAd1 = new InterstitialAd(this);
+        ;
         // set the ad unit ID
         mInterstitialAd1.setAdUnitId(getString(R.string.admob_interstitial_video_id));
         AdRequest adRequest1 = new AdRequest.Builder().build();
@@ -264,10 +311,8 @@ public class TabActivity extends AppCompatActivity {
     }
 
 
+
 //setupViewPager(viewPager);
-
-
-
 
 
     class SimpleFragmentPagerAdapter extends FragmentPagerAdapter {
@@ -312,7 +357,7 @@ public class TabActivity extends AppCompatActivity {
 
     /**
      * Checks if the app has permission to write to device storage
-     *
+     * <p>
      * If the app does not has permission then the user will be prompted to grant permissions
      *
      * @param activity

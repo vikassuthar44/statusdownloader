@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:padding="@dimen/twenty_dp"
+    android:background="@drawable/rect_solid_background"
+    >
+
+    <TextView
+        android:id="@+id/title"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="How To Use ?"
+        android:textColor="@color/white"
+        android:fontFamily="@font/adamina"
+        android:textSize="25sp"
+        android:textStyle="bold"/>
+
+    <LinearLayout
+        android:id="@+id/rl_text"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/title"
+        android:orientation="vertical">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="* Check the Desired Status/Story...."
+            android:textSize="15sp"
+            android:textColor="@color/white"
+            android:fontFamily="@font/adamina"
+            android:layout_marginTop="@dimen/ten_dp"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="* Come Back to App, Click on any Image or Video to View..."
+            android:textSize="15sp"
+            android:textColor="@color/white"
+            android:fontFamily="@font/adamina"
+            android:layout_marginTop="@dimen/ten_dp"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="* Click the Save Button.."
+            android:textSize="15sp"
+            android:textColor="@color/white"
+            android:fontFamily="@font/adamina"
+            android:layout_marginTop="@dimen/ten_dp"/>
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="The Image/Video is Instantly saved to your Gallery:)"
+            android:textSize="15sp"
+            android:textColor="@color/white"
+            android:fontFamily="@font/adamina"/>
+
+    </LinearLayout>
+
+
+    <TextView
+        android:id="@+id/ok"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="OK!"
+        android:layout_below="@id/rl_text"
+        android:layout_marginTop="@dimen/twenty_dp"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentEnd="true"
+        android:textColor="@color/colorAccent"
+        android:textSize="20sp"
+        android:padding="@dimen/ten_dp"/>
+
+</RelativeLayout>

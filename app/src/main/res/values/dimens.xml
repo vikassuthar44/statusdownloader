@@ -7,4 +7,5 @@
     <dimen name="thirty_dp">30dp</dimen>
     <dimen name="eight_dp">8dp</dimen>
     <dimen name="fiftyDp">50dp</dimen>
+    <dimen name="fourty_dp">40dp</dimen>
 </resources>

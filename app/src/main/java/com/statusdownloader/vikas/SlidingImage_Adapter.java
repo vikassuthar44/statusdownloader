@@ -66,7 +66,7 @@ public class SlidingImage_Adapter extends PagerAdapter {
         final ImageView imageView = (ImageView) imageLayout
                 .findViewById(R.id.image);
 
-        Animation zoomIn = AnimationUtils.loadAnimation(activity.getApplicationContext(), R.anim.zoom_in);
+        //Animation zoomIn = AnimationUtils.loadAnimation(activity.getApplicationContext(), R.anim.zoom_in);
 
 
         //imageView.setImageResource(IMAGES.get(position));
@@ -75,7 +75,7 @@ public class SlidingImage_Adapter extends PagerAdapter {
 
         imageView.setOnTouchListener(new ImageMatrixTouchHandler(context));
 
-        imageView.setAnimation(zoomIn);
+       // imageView.setAnimation(zoomIn);
 
 
         view.addView(imageLayout, 0);

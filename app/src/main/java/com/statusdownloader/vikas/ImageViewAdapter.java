@@ -83,11 +83,6 @@ public class ImageViewAdapter extends RecyclerView.Adapter<RecyclerView.ViewHold
                 MyViewHolder myViewHolder = (MyViewHolder) viewHolder;
                 Bitmap myBitmap = BitmapFactory.decodeFile(imageList.get(position));
 
-                //ImageView myImage = (ImageView) findViewById(R.id.imageviewTest);
-
-                //imageView.setImageBitmap(myBitmap);
-
-
                 myViewHolder.image.setImageBitmap(myBitmap);
 
                 myViewHolder.image.setOnClickListener(new View.OnClickListener() {
@@ -97,8 +92,8 @@ public class ImageViewAdapter extends RecyclerView.Adapter<RecyclerView.ViewHold
                     }
                 });
 
-                Animation zoomIn = AnimationUtils.loadAnimation(activity.getApplicationContext(), R.anim.zoom_in);
-                myViewHolder.image.startAnimation(zoomIn);
+                //Animation zoomIn = AnimationUtils.loadAnimation(activity.getApplicationContext(), R.anim.zoom_in);
+                //myViewHolder.image.startAnimation(zoomIn);
             }
         } else {
             UnifiedNativeAd nativeAd = (UnifiedNativeAd) mRecyclerViewItems.get(position);

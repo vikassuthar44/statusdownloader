@@ -1,5 +1,8 @@
 package com.statusdownloader.vikas;
 
+import android.animation.Animator;
+import android.animation.AnimatorListenerAdapter;
+import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.Canvas;
@@ -13,6 +16,7 @@ import android.view.View;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.MediaController;
 import android.widget.RelativeLayout;
 import android.widget.Toast;
@@ -23,6 +27,7 @@ import com.google.android.gms.ads.AdRequest;
 import com.google.android.gms.ads.AdView;
 import com.google.android.gms.ads.InterstitialAd;
 import com.google.android.gms.ads.MobileAds;
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.statusdownloader.R;
 
 import java.io.File;
@@ -46,6 +51,8 @@ public class FullScreenVideoActivity extends AppCompatActivity implements View.O
     private Animation slideDown;
     private AdView mAdView;
     private InterstitialAd interstitialAd;
+
+    private boolean isRotate = false;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -128,6 +135,7 @@ public class FullScreenVideoActivity extends AppCompatActivity implements View.O
 
 
 
+    @SuppressLint("RestrictedApi")
     private void initData() {
 
         slideDown = AnimationUtils.loadAnimation(getApplicationContext(), R.anim.slide_down);
@@ -146,9 +154,15 @@ public class FullScreenVideoActivity extends AppCompatActivity implements View.O
         rl_share = (RelativeLayout)findViewById(R.id.rl_share);
         rl_share.setOnClickListener(this);
 
-        Intent intent = getIntent();
-        if(intent != null) {
+        FloatingActionButton fabAdd = (FloatingActionButton) findViewById(R.id.fabAdd);
 
+        FloatingActionButton fabShare = (FloatingActionButton) findViewById(R.id.fabShare);
+        FloatingActionButton fabDownload = (FloatingActionButton) findViewById(R.id.fabDownload);
+
+        LinearLayout rl_download_fab = (LinearLayout) findViewById(R.id.rl_download_fab);
+        LinearLayout rl_share_fab = (LinearLayout) findViewById(R.id.rl_share_fab);
+
+        Intent intent = getIntent();
 
             videoPath = intent.getStringExtra("videoUrl");
             Uri uri = Uri.parse(videoPath);
@@ -160,8 +174,112 @@ public class FullScreenVideoActivity extends AppCompatActivity implements View.O
             video.setVideoURI(uri);
             video.requestFocus();
             video.start();
-        }
+
+            mediaController.setPadding(0,0,0,25);
+
+            if(mediaController.isShowing()) {
+                fabAdd.setVisibility(View.GONE);
+                fabDownload.setVisibility(View.GONE);
+                fabShare.setVisibility(View.GONE);
+            } else {
+                fabAdd.setVisibility(View.VISIBLE);
+                fabDownload.setVisibility(View.VISIBLE);
+                fabShare.setVisibility(View.VISIBLE);
+            }
+
+
+
+
+        init(rl_download_fab);
+        init(rl_share_fab);
+
+        fabAdd.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                isRotate = rotateFab(v, !isRotate);
+                if(isRotate){
+                    showIn(rl_share_fab);
+                    showIn(rl_download_fab);
+                }else{
+                    showOut(rl_share_fab);
+                    showOut(rl_download_fab);
+                }
+
+            }
+        });
+
+        rl_share_fab.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                shareImage();
+            }
+        });
+
+        rl_download_fab.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                downloadVideo(videoPath);
+            }
+        });
+
+
+
     }
+
+
+    private   boolean rotateFab(final View v, boolean rotate) {
+        v.animate().setDuration(200)
+                .setListener(new AnimatorListenerAdapter() {
+                    @Override
+                    public void onAnimationEnd(Animator animation) {
+                        super.onAnimationEnd(animation);
+                    }
+                })
+                .rotation(rotate ? 135f : 0f);
+        return rotate;
+    }
+
+    private  void init(final View v) {
+        v.setVisibility(View.GONE);
+        v.setTranslationY(v.getHeight());
+        v.setAlpha(0f);
+    }
+
+
+    private   void showOut(final View v) {
+        v.setVisibility(View.VISIBLE);
+        v.setAlpha(1f);
+        v.setTranslationY(0);
+        v.animate()
+                .setDuration(200)
+                .translationY(v.getHeight())
+                .setListener(new AnimatorListenerAdapter() {
+                    @Override
+                    public void onAnimationEnd(Animator animation) {
+                        v.setVisibility(View.GONE);
+                        super.onAnimationEnd(animation);
+                    }
+                }).alpha(0f)
+                .start();
+    }
+
+    private void showIn(final View v) {
+        v.setVisibility(View.VISIBLE);
+        v.setAlpha(0f);
+        v.setTranslationY(v.getHeight());
+        v.animate()
+                .setDuration(200)
+                .translationY(0)
+                .setListener(new AnimatorListenerAdapter() {
+                    @Override
+                    public void onAnimationEnd(Animator animation) {
+                        super.onAnimationEnd(animation);
+                    }
+                })
+                .alpha(1f)
+                .start();
+    }
+
 
     @Override
     public void onClick(View v) {

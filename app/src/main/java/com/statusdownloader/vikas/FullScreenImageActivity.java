@@ -1,5 +1,7 @@
 package com.statusdownloader.vikas;
 
+import android.animation.Animator;
+import android.animation.AnimatorListenerAdapter;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
@@ -17,6 +19,7 @@ import android.view.View;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.Toast;
 
@@ -26,6 +29,7 @@ import com.google.android.gms.ads.AdRequest;
 import com.google.android.gms.ads.AdView;
 import com.google.android.gms.ads.InterstitialAd;
 import com.google.android.gms.ads.MobileAds;
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.statusdownloader.R;
 
 import java.io.File;
@@ -54,6 +58,8 @@ public class FullScreenImageActivity extends AppCompatActivity implements View.O
     private static int currentPage = 0;
     private static int NUM_PAGES = 0;
     private int noOfSwipePage = 0;
+
+    private boolean isRotate = false;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -219,6 +225,100 @@ public class FullScreenImageActivity extends AppCompatActivity implements View.O
 
         indicator.setViewPager(mPager);*/
 
+        FloatingActionButton fabAdd = (FloatingActionButton) findViewById(R.id.fabAdd);
+
+        FloatingActionButton fabShare = (FloatingActionButton) findViewById(R.id.fabShare);
+        FloatingActionButton fabDownload = (FloatingActionButton) findViewById(R.id.fabDownload);
+
+        LinearLayout rl_download_fab = (LinearLayout) findViewById(R.id.rl_download_fab);
+        LinearLayout rl_share_fab = (LinearLayout) findViewById(R.id.rl_share_fab);
+
+        init(rl_download_fab);
+        init(rl_share_fab);
+
+        fabAdd.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                isRotate = rotateFab(v, !isRotate);
+                if(isRotate){
+                   showIn(rl_share_fab);
+                   showIn(rl_download_fab);
+                }else{
+                    showOut(rl_share_fab);
+                   showOut(rl_download_fab);
+                }
+
+            }
+        });
+
+        rl_share_fab.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                shareImage();
+            }
+        });
+
+        rl_download_fab.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                downloadImage();
+            }
+        });
+
+
+    }
+
+    private   boolean rotateFab(final View v, boolean rotate) {
+        v.animate().setDuration(200)
+                .setListener(new AnimatorListenerAdapter() {
+                    @Override
+                    public void onAnimationEnd(Animator animation) {
+                        super.onAnimationEnd(animation);
+                    }
+                })
+                .rotation(rotate ? 135f : 0f);
+        return rotate;
+    }
+
+    private  void init(final View v) {
+        v.setVisibility(View.GONE);
+        v.setTranslationY(v.getHeight());
+        v.setAlpha(0f);
+    }
+
+
+    private   void showOut(final View v) {
+        v.setVisibility(View.VISIBLE);
+        v.setAlpha(1f);
+        v.setTranslationY(0);
+        v.animate()
+                .setDuration(200)
+                .translationY(v.getHeight())
+                .setListener(new AnimatorListenerAdapter() {
+                    @Override
+                    public void onAnimationEnd(Animator animation) {
+                        v.setVisibility(View.GONE);
+                        super.onAnimationEnd(animation);
+                    }
+                }).alpha(0f)
+                .start();
+    }
+
+    private void showIn(final View v) {
+        v.setVisibility(View.VISIBLE);
+        v.setAlpha(0f);
+        v.setTranslationY(v.getHeight());
+        v.animate()
+                .setDuration(200)
+                .translationY(0)
+                .setListener(new AnimatorListenerAdapter() {
+                    @Override
+                    public void onAnimationEnd(Animator animation) {
+                        super.onAnimationEnd(animation);
+                    }
+                })
+                .alpha(1f)
+                .start();
     }
 
     @Override
