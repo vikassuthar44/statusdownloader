@@ -1,15 +1,15 @@
 [
     {
-        "merged": "/Users/3embed/Desktop/vikas/statusdownloader/app/build/intermediates/res/merged/debug/drawable-mdpi-v4_common_google_signin_btn_text_dark_normal_background.9.png.flat",
-        "source": "/Users/3embed/.gradle/caches/transforms-2/files-2.1/851f25eb08ae5ea523038907f991bdea/res/drawable-mdpi-v4/common_google_signin_btn_text_dark_normal_background.9.png"
+        "merged": "/Users/3embed/Desktop/vikas/statusdownloader/app/build/intermediates/res/merged/debug/color_mtrl_tabs_ripple_color.xml.flat",
+        "source": "/Users/3embed/.gradle/caches/transforms-2/files-2.1/2277f3c7e4e6174e8829917fc212667e/res/color/mtrl_tabs_ripple_color.xml"
     },
     {
         "merged": "/Users/3embed/Desktop/vikas/statusdownloader/app/build/intermediates/res/merged/debug/drawable-ldpi_ic_icon.png.flat",
         "source": "/Users/3embed/Desktop/vikas/statusdownloader/app/build/generated/res/pngs/debug/drawable-ldpi/ic_icon.png"
     },
     {
-        "merged": "/Users/3embed/Desktop/vikas/statusdownloader/app/build/intermediates/res/merged/debug/color_mtrl_tabs_ripple_color.xml.flat",
-        "source": "/Users/3embed/.gradle/caches/transforms-2/files-2.1/2277f3c7e4e6174e8829917fc212667e/res/color/mtrl_tabs_ripple_color.xml"
+        "merged": "/Users/3embed/Desktop/vikas/statusdownloader/app/build/intermediates/res/merged/debug/drawable-mdpi-v4_common_google_signin_btn_text_dark_normal_background.9.png.flat",
+        "source": "/Users/3embed/.gradle/caches/transforms-2/files-2.1/851f25eb08ae5ea523038907f991bdea/res/drawable-mdpi-v4/common_google_signin_btn_text_dark_normal_background.9.png"
     },
     {
         "merged": "/Users/3embed/Desktop/vikas/statusdownloader/app/build/intermediates/res/merged/debug/drawable-hdpi-v4_abc_list_selector_disabled_holo_light.9.png.flat",
@@ -142,6 +142,10 @@
     {
         "merged": "/Users/3embed/Desktop/vikas/statusdownloader/app/build/intermediates/res/merged/debug/drawable-xxhdpi_ic_play_button.png.flat",
         "source": "/Users/3embed/Desktop/vikas/statusdownloader/app/build/generated/res/pngs/debug/drawable-xxhdpi/ic_play_button.png"
+    },
+    {
+        "merged": "/Users/3embed/Desktop/vikas/statusdownloader/app/build/intermediates/res/merged/debug/drawable-anydpi-v21_ic_whatsapp.xml.flat",
+        "source": "/Users/3embed/Desktop/vikas/statusdownloader/app/build/generated/res/pngs/debug/drawable-anydpi-v21/ic_whatsapp.xml"
     },
     {
         "merged": "/Users/3embed/Desktop/vikas/statusdownloader/app/build/intermediates/res/merged/debug/drawable-hdpi-v4_abc_scrubber_control_to_pressed_mtrl_005.png.flat",
@@ -390,6 +394,10 @@
     {
         "merged": "/Users/3embed/Desktop/vikas/statusdownloader/app/build/intermediates/res/merged/debug/drawable-xxhdpi_default_image.png.flat",
         "source": "/Users/3embed/Desktop/vikas/statusdownloader/app/build/generated/res/pngs/debug/drawable-xxhdpi/default_image.png"
+    },
+    {
+        "merged": "/Users/3embed/Desktop/vikas/statusdownloader/app/build/intermediates/res/merged/debug/drawable-xhdpi_ic_whatsapp.png.flat",
+        "source": "/Users/3embed/Desktop/vikas/statusdownloader/app/build/generated/res/pngs/debug/drawable-xhdpi/ic_whatsapp.png"
     },
     {
         "merged": "/Users/3embed/Desktop/vikas/statusdownloader/app/build/intermediates/res/merged/debug/layout_abc_alert_dialog_material.xml.flat",
@@ -666,6 +674,10 @@
     {
         "merged": "/Users/3embed/Desktop/vikas/statusdownloader/app/build/intermediates/res/merged/debug/drawable-xhdpi-v4_abc_ic_star_black_16dp.png.flat",
         "source": "/Users/3embed/.gradle/caches/transforms-2/files-2.1/b20f72049212ec6a3f78d6ad25d6f035/res/drawable-xhdpi-v4/abc_ic_star_black_16dp.png"
+    },
+    {
+        "merged": "/Users/3embed/Desktop/vikas/statusdownloader/app/build/intermediates/res/merged/debug/drawable-mdpi_ic_whatsapp.png.flat",
+        "source": "/Users/3embed/Desktop/vikas/statusdownloader/app/build/generated/res/pngs/debug/drawable-mdpi/ic_whatsapp.png"
     },
     {
         "merged": "/Users/3embed/Desktop/vikas/statusdownloader/app/build/intermediates/res/merged/debug/mipmap-xxhdpi_ic_launcher.png.flat",
@@ -1102,6 +1114,10 @@
     {
         "merged": "/Users/3embed/Desktop/vikas/statusdownloader/app/build/intermediates/res/merged/debug/mipmap-xxxhdpi_user_profile_icon_round.png.flat",
         "source": "/Users/3embed/Desktop/vikas/statusdownloader/app/src/main/res/mipmap-xxxhdpi/user_profile_icon_round.png"
+    },
+    {
+        "merged": "/Users/3embed/Desktop/vikas/statusdownloader/app/build/intermediates/res/merged/debug/drawable-xxxhdpi_ic_whatsapp.png.flat",
+        "source": "/Users/3embed/Desktop/vikas/statusdownloader/app/build/generated/res/pngs/debug/drawable-xxxhdpi/ic_whatsapp.png"
     },
     {
         "merged": "/Users/3embed/Desktop/vikas/statusdownloader/app/build/intermediates/res/merged/debug/layout_slidingvideo_layout.xml.flat",
@@ -1718,6 +1734,10 @@
     {
         "merged": "/Users/3embed/Desktop/vikas/statusdownloader/app/build/intermediates/res/merged/debug/drawable-mdpi_user_profile_foreground.png.flat",
         "source": "/Users/3embed/Desktop/vikas/statusdownloader/app/build/generated/res/pngs/debug/drawable-mdpi/user_profile_foreground.png"
+    },
+    {
+        "merged": "/Users/3embed/Desktop/vikas/statusdownloader/app/build/intermediates/res/merged/debug/drawable-hdpi_ic_whatsapp.png.flat",
+        "source": "/Users/3embed/Desktop/vikas/statusdownloader/app/build/generated/res/pngs/debug/drawable-hdpi/ic_whatsapp.png"
     },
     {
         "merged": "/Users/3embed/Desktop/vikas/statusdownloader/app/build/intermediates/res/merged/debug/drawable-xxhdpi-v4_abc_text_select_handle_left_mtrl_dark.png.flat",
@@ -2824,6 +2844,10 @@
         "source": "/Users/3embed/Desktop/vikas/statusdownloader/app/build/generated/res/pngs/debug/drawable-mdpi/ic_launcher_foreground.png"
     },
     {
+        "merged": "/Users/3embed/Desktop/vikas/statusdownloader/app/build/intermediates/res/merged/debug/drawable-xxhdpi_ic_whatsapp.png.flat",
+        "source": "/Users/3embed/Desktop/vikas/statusdownloader/app/build/generated/res/pngs/debug/drawable-xxhdpi/ic_whatsapp.png"
+    },
+    {
         "merged": "/Users/3embed/Desktop/vikas/statusdownloader/app/build/intermediates/res/merged/debug/drawable_abc_ic_go_search_api_material.xml.flat",
         "source": "/Users/3embed/.gradle/caches/transforms-2/files-2.1/b20f72049212ec6a3f78d6ad25d6f035/res/drawable/abc_ic_go_search_api_material.xml"
     },
@@ -2866,6 +2890,10 @@
     {
         "merged": "/Users/3embed/Desktop/vikas/statusdownloader/app/build/intermediates/res/merged/debug/drawable-xhdpi_ic_like_white_24dp.png.flat",
         "source": "/Users/3embed/Desktop/vikas/statusdownloader/app/build/generated/res/pngs/debug/drawable-xhdpi/ic_like_white_24dp.png"
+    },
+    {
+        "merged": "/Users/3embed/Desktop/vikas/statusdownloader/app/build/intermediates/res/merged/debug/drawable-ldpi_ic_whatsapp.png.flat",
+        "source": "/Users/3embed/Desktop/vikas/statusdownloader/app/build/generated/res/pngs/debug/drawable-ldpi/ic_whatsapp.png"
     },
     {
         "merged": "/Users/3embed/Desktop/vikas/statusdownloader/app/build/intermediates/res/merged/debug/drawable-ldpi_ic_apps_black_24dp.png.flat",

@@ -4,12 +4,14 @@ import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.Environment;
+import android.os.Handler;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.animation.Animation;
 import android.widget.LinearLayout;
+import android.widget.ProgressBar;
 import android.widget.RelativeLayout;
 
 import com.google.android.gms.ads.AdListener;
@@ -54,10 +56,18 @@ public class ImageFragment extends Fragment implements ImageViewAdapter.OnClickL
     // List of MenuItems and native ads that populate the RecyclerView.
     private List<Object> mRecyclerViewItems = new ArrayList<>();
 
-    public ImageFragment(Activity activity) {
+    private File file;
+
+    private ProgressBar progressBar1;
+
+    public ImageFragment(Activity activity, File file) {
         // Required empty public constructor
         this.activity = activity;
         activity.setTitle("One");
+        this.file = file;
+
+
+
     }
 
     @Override
@@ -82,6 +92,12 @@ public class ImageFragment extends Fragment implements ImageViewAdapter.OnClickL
         // Initialize the Mobile Ads SDK
         MobileAds.initialize(activity, getString(R.string.admob_app_id));
 
+        progressBar1 = (ProgressBar) view.findViewById(R.id.progressBar1);
+        if(imageList != null && !imageList.isEmpty()) {
+            imageList.clear();
+            imageviewAdapter.notifyDataSetChanged();
+            progressBar1.setVisibility(View.VISIBLE);
+        }
         // Find Banner ad
         mAdView = view.findViewById(R.id.adView);
 
@@ -144,47 +160,54 @@ public class ImageFragment extends Fragment implements ImageViewAdapter.OnClickL
         loadNativeAds();
 
 
-        File fileList = new File(Environment.getExternalStorageDirectory() + "/WhatsApp/Media/.Statuses/");
+        //File fileList = new File(Environment.getExternalStorageDirectory() + "/WhatsApp/Media/.Statuses/");
 
-        Log.d(TAG, "initdata: fileList " + fileList);
+        Log.d(TAG, "initdata: fileList " + file);
 
 
-        File list[] = fileList.listFiles();
+        File list[] = file.listFiles();
 
         //Log.d(TAG, "initdata: list " + list.toString());
 
-        if(list != null) {
-            int k =0;
-            rl_no_data_found.setVisibility(View.GONE);
-            for (int i = 0; i < list.length; i++) {
+        new Handler().postDelayed(new Runnable() {
+            @Override
+            public void run() {
+                if(list != null) {
+                    progressBar1.setVisibility(View.GONE);
+                    int k =0;
+                    rl_no_data_found.setVisibility(View.GONE);
+                    for (int i = 0; i < list.length; i++) {
 
-                int length = list[i].getName().length();
-                if ((list[i].getName().substring(length - 3).equals("mp4"))) {
+                        int length = list[i].getName().length();
+                        if ((list[i].getName().substring(length - 3).equals("mp4"))) {
 
+                        } else {
+                            imageList.add(file + "/" + list[i].getName());
+                            ImageListData imageListData = new ImageListData(file + "/" + list[i].getName());
+                            mRecyclerViewItems.add(imageListData);
+                            k++;
+                        }
+
+
+                    }
+
+
+
+                    if (k != 0) {
+
+                        Log.d(TAG, "initdata: imagelist size= " + imageList.size());
+                        imageviewAdapter = new ImageViewAdapter(activity, imageList,ImageFragment.this,mRecyclerViewItems);
+
+                        recyclerView.setAdapter(imageviewAdapter);
+                    } else {
+                        rl_no_data_found.setVisibility(View.VISIBLE);
+                    }
                 } else {
-                    imageList.add(fileList + "/" + list[i].getName());
-                    ImageListData imageListData = new ImageListData(fileList + "/" + list[i].getName());
-                    mRecyclerViewItems.add(imageListData);
-                    k++;
+                    rl_no_data_found.setVisibility(View.VISIBLE);
                 }
 
-
             }
-
-
-
-            if (k != 0) {
-
-                Log.d(TAG, "initdata: imagelist size= " + imageList.size());
-                imageviewAdapter = new ImageViewAdapter(activity, imageList,this,mRecyclerViewItems);
-
-                recyclerView.setAdapter(imageviewAdapter);
-            } else {
-                rl_no_data_found.setVisibility(View.VISIBLE);
-            }
-        } else {
-            rl_no_data_found.setVisibility(View.VISIBLE);
-        }
+        },2000);
 
     }
 

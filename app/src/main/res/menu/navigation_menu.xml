@@ -2,32 +2,42 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
 
     <group android:id="@+id/top">
-    <item
-        android:id="@+id/how_use"
-        android:title="How To Use"
-        android:icon="@drawable/ic_help_outline_black_24dp"/>
+        <item
+            android:id="@+id/how_use"
+            android:icon="@drawable/ic_help_outline_black_24dp"
+            android:title="How To Use" />
 
-    <item
-        android:id="@+id/more_app"
-        android:title="Find More App"
-        android:icon="@drawable/ic_apps_black_24dp"/>
+        <item
+            android:id="@+id/whatsapp_normal_business"
+            android:icon="@drawable/ic_whatsapp"
+            android:title="Status" />
 
-    <item
-        android:id="@+id/help"
-        android:title="Help"
-        android:icon="@drawable/ic_help_black_24dp"/>
+        <item
+            android:id="@+id/whatsapp_business"
+            android:icon="@drawable/ic_whatsapp"
+            android:title="WhatsApp Business Status" />
+
+        <item
+            android:id="@+id/more_app"
+            android:icon="@drawable/ic_apps_black_24dp"
+            android:title="Find More App" />
+
+        <item
+            android:id="@+id/help"
+            android:icon="@drawable/ic_help_black_24dp"
+            android:title="Help" />
     </group>
 
     <group android:id="@+id/bottom">
         <item
             android:id="@+id/rate"
-            android:title="Rate"
-            android:icon="@drawable/ic_like_white_24dp"/>
+            android:icon="@drawable/ic_like_white_24dp"
+            android:title="Rate" />
 
         <item
             android:id="@+id/share"
-            android:title="share"
-            android:icon="@drawable/ic_share_black_24dp"/>
+            android:icon="@drawable/ic_share_black_24dp"
+            android:title="share" />
     </group>
 
 </menu>

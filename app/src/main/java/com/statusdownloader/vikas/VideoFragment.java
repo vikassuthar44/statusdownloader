@@ -3,12 +3,14 @@ package com.statusdownloader.vikas;
 import android.app.Activity;
 import android.os.Bundle;
 import android.os.Environment;
+import android.os.Handler;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.animation.Animation;
 import android.widget.LinearLayout;
+import android.widget.ProgressBar;
 import android.widget.RelativeLayout;
 
 import com.google.android.gms.ads.AdListener;
@@ -59,12 +61,17 @@ public class VideoFragment extends Fragment {
     // List of MenuItems and native ads that populate the RecyclerView.
     private List<Object> mRecyclerViewItems = new ArrayList<>();
 
+    private File file;
 
-    public VideoFragment(Activity activity) {
+
+    private ProgressBar progressBar1;
+
+    public VideoFragment(Activity activity, File file) {
         // Required empty public constructor
 
         this.activity = activity;
         activity.setTitle("Two");
+        this.file = file;
     }
 
     @Override
@@ -87,6 +94,13 @@ public class VideoFragment extends Fragment {
 
         // Initialize the Mobile Ads SDK
         MobileAds.initialize(activity, getString(R.string.admob_app_id));
+
+        progressBar1 = (ProgressBar) view.findViewById(R.id.progressBar1);
+        if(videoList != null && !videoList.isEmpty()) {
+            videoList.clear();
+            imageviewAdapter.notifyDataSetChanged();
+            progressBar1.setVisibility(View.VISIBLE);
+        }
 
         // Find Banner ad
         mAdView = view.findViewById(R.id.adView);
@@ -142,49 +156,57 @@ public class VideoFragment extends Fragment {
 
         rl_no_data_found = (LinearLayout) view.findViewById(R.id.rl_no_data_found);
 
-        File fileList = new File(Environment.getExternalStorageDirectory() + "/WhatsApp/Media/.Statuses/");
+        //File fileList = new File(Environment.getExternalStorageDirectory() + "/WhatsApp/Media/.Statuses/");
 
         loadNativeAds();
 
-        File list[] = fileList.listFiles();
-        if(list != null) {
-            int k =0;
-            rl_no_data_found.setVisibility(View.GONE);
-            for (int i = 0; i < list.length; i++) {
-                data1++;
-                int length = list[i].getName().length();
-                if ((list[i].getName().substring(length - 3).equals("mp4"))) {
-                    videoList.add(fileList + "/" + list[i].getName());
-                    ImageListData imageListData = new ImageListData(fileList + "/" + list[i].getName());
-                    mRecyclerViewItems.add(imageListData);
-                    k++;
-                    data++;
+        File list[] = file.listFiles();
+
+        new Handler().postDelayed(new Runnable() {
+            @Override
+            public void run() {
+                if(list != null) {
+                    progressBar1.setVisibility(View.GONE);
+                    int k =0;
+                    rl_no_data_found.setVisibility(View.GONE);
+                    for (int i = 0; i < list.length; i++) {
+                        data1++;
+                        int length = list[i].getName().length();
+                        if ((list[i].getName().substring(length - 3).equals("mp4"))) {
+                            videoList.add(file + "/" + list[i].getName());
+                            ImageListData imageListData = new ImageListData(file + "/" + list[i].getName());
+                            mRecyclerViewItems.add(imageListData);
+                            k++;
+                            data++;
                     /*if(data == 10)
                         break;*/
+                        } else {
+
+                        }
+
+
+                    }
+
+
+
+                    GridLayoutManager layoutManager = new GridLayoutManager(activity, 2);
+                    recyclerView.setLayoutManager(layoutManager);
+
+                    if(k != 0) {
+
+                        imageviewAdapter = new VideoviewAdapter(activity, videoList,mRecyclerViewItems);
+
+                        recyclerView.setAdapter(imageviewAdapter);
+
+                    } else {
+                        rl_no_data_found.setVisibility(View.VISIBLE);
+                    }
                 } else {
-
+                    rl_no_data_found.setVisibility(View.VISIBLE);
                 }
-
-
             }
+        },2000);
 
-
-
-            GridLayoutManager layoutManager = new GridLayoutManager(activity, 2);
-            recyclerView.setLayoutManager(layoutManager);
-
-            if(k != 0) {
-
-                imageviewAdapter = new VideoviewAdapter(activity, videoList,mRecyclerViewItems);
-
-                recyclerView.setAdapter(imageviewAdapter);
-
-            } else {
-                rl_no_data_found.setVisibility(View.VISIBLE);
-            }
-        } else {
-            rl_no_data_found.setVisibility(View.VISIBLE);
-        }
 
 
     }

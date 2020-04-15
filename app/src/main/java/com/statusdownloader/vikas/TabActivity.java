@@ -12,6 +12,7 @@ import android.graphics.BitmapFactory;
 import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
+import android.os.Environment;
 import android.provider.MediaStore;
 import android.util.Log;
 import android.view.Gravity;
@@ -47,6 +48,7 @@ import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentPagerAdapter;
+import androidx.fragment.app.FragmentStatePagerAdapter;
 import androidx.viewpager.widget.ViewPager;
 
 import java.io.File;
@@ -85,6 +87,8 @@ public class TabActivity extends AppCompatActivity {
     private NavigationView nv;
 
     private TextView app_version;
+
+    File fileList;
 
 
     @TargetApi(Build.VERSION_CODES.LOLLIPOP)
@@ -151,6 +155,21 @@ public class TabActivity extends AppCompatActivity {
                             startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse("https://play.google.com/store/apps/details?id=" + appPackageName)));
                         }
                         break;
+
+                    case R.id.whatsapp_normal_business :
+                        dl.closeDrawers();
+
+                        fileList = new File(Environment.getExternalStorageDirectory() + "/WhatsApp/Media/.Statuses/");
+                        fragmentCall(fileList);
+                        break;
+
+                    case R.id.whatsapp_business:
+                        dl.closeDrawers();
+
+                        fileList = new File(Environment.getExternalStorageDirectory() + "/WhatsApp Business/Media/.Statuses/");
+                        fragmentCall(fileList);
+                        break;
+
                     case R.id.rate:
                         final String appPackageName1 = getPackageName(); // getPackageName() from Context or Activity object
                         try {
@@ -189,40 +208,7 @@ public class TabActivity extends AppCompatActivity {
 
         progressBar = findViewById(R.id.progressBar1);
 
-        if (verifyStoragePermissions(TabActivity.this)) {
-            // Find the view pager that will allow the user to swipe between fragments
-            ViewPager viewPager = (ViewPager) findViewById(R.id.viewpager);
-
-            progressBar.setVisibility(View.GONE);
-            // Create an adapter that knows which fragment should be shown on each page
-            SimpleFragmentPagerAdapter adapter = new SimpleFragmentPagerAdapter(this, getSupportFragmentManager());
-
-            // Set the adapter onto the view pager
-            viewPager.setAdapter(adapter);
-
-            // Give the TabLayout the ViewPager
-            TabLayout tabLayout = (TabLayout) findViewById(R.id.sliding_tabs);
-            tabLayout.setupWithViewPager(viewPager);
-        } else {
-            dialog = new Dialog(this);
-            dialog.setContentView(R.layout.storage_permission_dialog);
-
-            dialog.setCancelable(false);
-
-            Button btnAllow = dialog.findViewById(R.id.btnAllow);
-            btnAllow.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View view) {
-                    dialog.dismiss();
-                    if (verifyStoragePermissions(TabActivity.this)) {
-
-                    } else {
-                        dialog.show();
-                    }
-                }
-            });
-            dialog.show();
-        }
+        fragmentCall(new File(Environment.getExternalStorageDirectory() + "/WhatsApp/Media/.Statuses/"));
 
         mInterstitialAd = new InterstitialAd(this);
 
@@ -252,6 +238,44 @@ public class TabActivity extends AppCompatActivity {
             }
         }, 3000, 2005, TimeUnit.SECONDS);
 
+    }
+
+
+    private void fragmentCall(File fileList) {
+        if (verifyStoragePermissions(TabActivity.this)) {
+            // Find the view pager that will allow the user to swipe between fragments
+            ViewPager viewPager = (ViewPager) findViewById(R.id.viewpager);
+
+            progressBar.setVisibility(View.GONE);
+            // Create an adapter that knows which fragment should be shown on each page
+            SimpleFragmentPagerAdapter adapter = new SimpleFragmentPagerAdapter(this, getSupportFragmentManager(),fileList);
+
+            // Set the adapter onto the view pager
+            viewPager.setAdapter(adapter);
+
+            // Give the TabLayout the ViewPager
+            TabLayout tabLayout = (TabLayout) findViewById(R.id.sliding_tabs);
+            tabLayout.setupWithViewPager(viewPager);
+        } else {
+            dialog = new Dialog(this);
+            dialog.setContentView(R.layout.storage_permission_dialog);
+
+            dialog.setCancelable(false);
+
+            Button btnAllow = dialog.findViewById(R.id.btnAllow);
+            btnAllow.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    dialog.dismiss();
+                    if (verifyStoragePermissions(TabActivity.this)) {
+
+                    } else {
+                        dialog.show();
+                    }
+                }
+            });
+            dialog.show();
+        }
     }
 
     @Override
@@ -315,21 +339,23 @@ public class TabActivity extends AppCompatActivity {
 //setupViewPager(viewPager);
 
 
-    class SimpleFragmentPagerAdapter extends FragmentPagerAdapter {
+    class SimpleFragmentPagerAdapter extends FragmentStatePagerAdapter {
         private Context mContext;
+        private File file;
 
-        public SimpleFragmentPagerAdapter(Context context, FragmentManager fm) {
+        public SimpleFragmentPagerAdapter(Context context, FragmentManager fm, File file) {
             super(fm);
             mContext = context;
+            this.file = file;
         }
 
         // This determines the fragment for each tab
         @Override
         public Fragment getItem(int position) {
             if (position == 0) {
-                return new ImageFragment(TabActivity.this);
+                return new ImageFragment(TabActivity.this,file);
             } else {
-                return new VideoFragment(TabActivity.this);
+                return new VideoFragment(TabActivity.this, file);
             }
         }
 
@@ -425,7 +451,7 @@ public class TabActivity extends AppCompatActivity {
 
                     progressBar.setVisibility(View.GONE);
                     // Create an adapter that knows which fragment should be shown on each page
-                    SimpleFragmentPagerAdapter adapter = new SimpleFragmentPagerAdapter(TabActivity.this, getSupportFragmentManager());
+                    SimpleFragmentPagerAdapter adapter = new SimpleFragmentPagerAdapter(TabActivity.this, getSupportFragmentManager(), fileList);
 
                     // Set the adapter onto the view pager
                     viewPager.setAdapter(adapter);

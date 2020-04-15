@@ -1097,6 +1097,7 @@ drawable ic_rate_review_black_24dp
 drawable ic_share
 drawable ic_share_black_24dp
 drawable ic_videocam_black_24dp
+drawable ic_whatsapp
 drawable mtrl_snackbar_background
 drawable mtrl_tabs_default_indicator
 drawable navigation_empty_icon
@@ -1392,6 +1393,8 @@ id video_gif
 id view_offset_helper
 id viewpager
 id visible
+id whatsapp_business
+id whatsapp_normal_business
 id wide
 id withText
 id wrap
