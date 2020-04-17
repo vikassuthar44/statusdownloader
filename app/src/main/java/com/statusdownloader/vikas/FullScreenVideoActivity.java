@@ -40,12 +40,11 @@ import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
 
-public class FullScreenVideoActivity extends AppCompatActivity implements View.OnClickListener {
+public class FullScreenVideoActivity extends AppCompatActivity{
 
     private static final String TAG = FullScreenImageActivity.class.getSimpleName();
     private ImageView  back, download, share;
     private VideoView  video;
-    private RelativeLayout rl_back, rl_download, rl_share,actionBar;
     private Bitmap myBitmap;
     private String videoPath;
     private Animation slideDown;
@@ -59,9 +58,7 @@ public class FullScreenVideoActivity extends AppCompatActivity implements View.O
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_full_screen_video);
 
-        /*getSupportActionBar().setTitle("Image");
-        getSupportActionBar().setDisplayHomeAsUpEnabled(true);*/
-        //getSupportActionBar().hide();
+
         initData();
 
         // Initialize the Mobile Ads SDK
@@ -138,21 +135,10 @@ public class FullScreenVideoActivity extends AppCompatActivity implements View.O
     @SuppressLint("RestrictedApi")
     private void initData() {
 
-        slideDown = AnimationUtils.loadAnimation(getApplicationContext(), R.anim.slide_down);
-        actionBar = (RelativeLayout)findViewById(R.id.actionBar);
-        actionBar.startAnimation(slideDown);
 
         video = (VideoView) findViewById(R.id.video);
 
 
-        rl_back = (RelativeLayout)findViewById(R.id.rl_back);
-        rl_back.setOnClickListener(this);
-
-        rl_download = (RelativeLayout)findViewById(R.id.rl_download);
-        rl_download.setOnClickListener(this);
-
-        rl_share = (RelativeLayout)findViewById(R.id.rl_share);
-        rl_share.setOnClickListener(this);
 
         FloatingActionButton fabAdd = (FloatingActionButton) findViewById(R.id.fabAdd);
 
@@ -281,24 +267,7 @@ public class FullScreenVideoActivity extends AppCompatActivity implements View.O
     }
 
 
-    @Override
-    public void onClick(View v) {
 
-        switch (v.getId()) {
-
-            case R.id.rl_back :
-                onBackPressed();
-                break;
-
-            case R.id.rl_download :
-                saveVideoToInternalStorage(videoPath);
-                break;
-
-            case R.id.rl_share :
-                shareImage();
-                break;
-        }
-    }
 
     private void saveVideoToInternalStorage (String filePath) {
         downloadVideo(filePath);

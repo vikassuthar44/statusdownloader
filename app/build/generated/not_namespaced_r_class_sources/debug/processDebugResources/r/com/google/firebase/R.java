@@ -64,18 +64,18 @@ public final class R {
     public static final class drawable {
         private drawable() {}
 
-        public static final int notification_action_background = 0x7f080097;
-        public static final int notification_bg = 0x7f080098;
-        public static final int notification_bg_low = 0x7f080099;
-        public static final int notification_bg_low_normal = 0x7f08009a;
-        public static final int notification_bg_low_pressed = 0x7f08009b;
-        public static final int notification_bg_normal = 0x7f08009c;
-        public static final int notification_bg_normal_pressed = 0x7f08009d;
-        public static final int notification_icon_background = 0x7f08009e;
-        public static final int notification_template_icon_bg = 0x7f08009f;
-        public static final int notification_template_icon_low_bg = 0x7f0800a0;
-        public static final int notification_tile_bg = 0x7f0800a1;
-        public static final int notify_panel_notification_icon_bg = 0x7f0800a2;
+        public static final int notification_action_background = 0x7f08009a;
+        public static final int notification_bg = 0x7f08009b;
+        public static final int notification_bg_low = 0x7f08009c;
+        public static final int notification_bg_low_normal = 0x7f08009d;
+        public static final int notification_bg_low_pressed = 0x7f08009e;
+        public static final int notification_bg_normal = 0x7f08009f;
+        public static final int notification_bg_normal_pressed = 0x7f0800a0;
+        public static final int notification_icon_background = 0x7f0800a1;
+        public static final int notification_template_icon_bg = 0x7f0800a2;
+        public static final int notification_template_icon_low_bg = 0x7f0800a3;
+        public static final int notification_tile_bg = 0x7f0800a4;
+        public static final int notify_panel_notification_icon_bg = 0x7f0800a5;
     }
     public static final class id {
         private id() {}
@@ -89,22 +89,22 @@ public final class R {
         public static final int blocking = 0x7f0a0032;
         public static final int chronometer = 0x7f0a0040;
         public static final int forever = 0x7f0a0065;
-        public static final int icon = 0x7f0a006e;
-        public static final int icon_group = 0x7f0a006f;
-        public static final int info = 0x7f0a0073;
-        public static final int italic = 0x7f0a0075;
-        public static final int line1 = 0x7f0a007f;
-        public static final int line3 = 0x7f0a0080;
-        public static final int normal = 0x7f0a008e;
-        public static final int notification_background = 0x7f0a008f;
-        public static final int notification_main_column = 0x7f0a0090;
-        public static final int notification_main_column_container = 0x7f0a0091;
-        public static final int right_icon = 0x7f0a00a6;
-        public static final int right_side = 0x7f0a00a7;
-        public static final int text = 0x7f0a00eb;
-        public static final int text2 = 0x7f0a00ec;
-        public static final int time = 0x7f0a00f5;
-        public static final int title = 0x7f0a00f6;
+        public static final int icon = 0x7f0a006d;
+        public static final int icon_group = 0x7f0a006e;
+        public static final int info = 0x7f0a0072;
+        public static final int italic = 0x7f0a0074;
+        public static final int line1 = 0x7f0a007e;
+        public static final int line3 = 0x7f0a007f;
+        public static final int normal = 0x7f0a008d;
+        public static final int notification_background = 0x7f0a008e;
+        public static final int notification_main_column = 0x7f0a008f;
+        public static final int notification_main_column_container = 0x7f0a0090;
+        public static final int right_icon = 0x7f0a00a5;
+        public static final int right_side = 0x7f0a00a6;
+        public static final int text = 0x7f0a00ea;
+        public static final int text2 = 0x7f0a00eb;
+        public static final int time = 0x7f0a00f4;
+        public static final int title = 0x7f0a00f5;
     }
     public static final class integer {
         private integer() {}

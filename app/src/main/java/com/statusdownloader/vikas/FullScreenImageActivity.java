@@ -41,7 +41,7 @@ import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
 
-public class FullScreenImageActivity extends AppCompatActivity implements View.OnClickListener {
+public class FullScreenImageActivity extends AppCompatActivity  {
 
     private static final String TAG = FullScreenImageActivity.class.getSimpleName();
     private ImageView image, back, download, share;
@@ -68,13 +68,6 @@ public class FullScreenImageActivity extends AppCompatActivity implements View.O
 
 
         imageUrlList = new ArrayList<>();
-
-        slideDown = AnimationUtils.loadAnimation(getApplicationContext(), R.anim.slide_down);
-        actionBar = (RelativeLayout)findViewById(R.id.actionBar);
-        actionBar.startAnimation(slideDown);
-
-        zoomIn = AnimationUtils.loadAnimation(getApplicationContext(), R.anim.zoom_in);
-
 
 
         initData();
@@ -189,14 +182,8 @@ public class FullScreenImageActivity extends AppCompatActivity implements View.O
 
         image = (ImageView) findViewById(R.id.image);
 
-        rl_back = (RelativeLayout) findViewById(R.id.rl_back);
-        rl_back.setOnClickListener(this);
 
-        rl_download = (RelativeLayout) findViewById(R.id.rl_download);
-        rl_download.setOnClickListener(this);
 
-        rl_share = (RelativeLayout) findViewById(R.id.rl_share);
-        rl_share.setOnClickListener(this);
 
         Intent intent = getIntent();
         if (intent != null) {
@@ -208,7 +195,6 @@ public class FullScreenImageActivity extends AppCompatActivity implements View.O
 
             image.setImageBitmap(myBitmap);
         }
-        image.startAnimation(zoomIn);
 
         image.setOnTouchListener(new ImageMatrixTouchHandler(this));
 
@@ -321,25 +307,7 @@ public class FullScreenImageActivity extends AppCompatActivity implements View.O
                 .start();
     }
 
-    @Override
-    public void onClick(View v) {
 
-        switch (v.getId()) {
-
-            case R.id.rl_back:
-                finish();
-                onBackPressed();
-                break;
-
-            case R.id.rl_download:
-                downloadImage();
-                break;
-
-            case R.id.rl_share:
-                shareImage();
-                break;
-        }
-    }
 
     public void downloadImage() {
         FileOutputStream fos = null;

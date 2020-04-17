@@ -118,14 +118,6 @@ public class TabActivity extends AppCompatActivity {
 
         nv = (NavigationView) findViewById(R.id.nv);
 
-       /* app_version = (TextView) nv.findViewById(R.id.app_version);
-        try {
-            String versionName = this.getPackageManager().getPackageInfo(this.getPackageName(), 0).versionName;
-            if (!versionName.isEmpty())
-                app_version.setText(versionName);
-        } catch (PackageManager.NameNotFoundException e) {
-            e.printStackTrace();
-        }*/
 
         nv.setNavigationItemSelectedListener(new NavigationView.OnNavigationItemSelectedListener() {
             @Override
@@ -148,17 +140,19 @@ public class TabActivity extends AppCompatActivity {
 
                         break;
                     case R.id.more_app:
-                        final String appPackageName = getPackageName(); // getPackageName() from Context or Activity object
                         try {
-                            startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse("market://details?id=" + appPackageName)));
-                        } catch (android.content.ActivityNotFoundException anfe) {
-                            startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse("https://play.google.com/store/apps/details?id=" + appPackageName)));
+                            try {
+                                startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse("market://search?q=pub:AmazeApp")));
+                            } catch (android.content.ActivityNotFoundException anfe) {
+                                startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse("http://play.google.com/store/apps/developer?id=AmazeApp")));
+                            }
+                        } catch (Exception e) {
+                            e.printStackTrace();
                         }
                         break;
 
                     case R.id.whatsapp_normal_business :
                         dl.closeDrawers();
-
                         fileList = new File(Environment.getExternalStorageDirectory() + "/WhatsApp/Media/.Statuses/");
                         fragmentCall(fileList);
                         break;
@@ -178,9 +172,7 @@ public class TabActivity extends AppCompatActivity {
                             startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse("https://play.google.com/store/apps/details?id=" + appPackageName1)));
                         }
                         break;
-                    case R.id.help:
-                        Toast.makeText(TabActivity.this, "My Cart", Toast.LENGTH_SHORT).show();
-                        break;
+
 
                     case R.id.share:
                         shareAppLink();
@@ -236,7 +228,7 @@ public class TabActivity extends AppCompatActivity {
                 });
 
             }
-        }, 3000, 2005, TimeUnit.SECONDS);
+        }, 45, 30, TimeUnit.SECONDS);
 
     }
 

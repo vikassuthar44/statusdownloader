@@ -10,7 +10,7 @@
         <item
             android:id="@+id/whatsapp_normal_business"
             android:icon="@drawable/ic_whatsapp"
-            android:title="Status" />
+            android:title="WhatsApp Status"/>
 
         <item
             android:id="@+id/whatsapp_business"
@@ -22,10 +22,6 @@
             android:icon="@drawable/ic_apps_black_24dp"
             android:title="Find More App" />
 
-        <item
-            android:id="@+id/help"
-            android:icon="@drawable/ic_help_black_24dp"
-            android:title="Help" />
     </group>
 
     <group android:id="@+id/bottom">

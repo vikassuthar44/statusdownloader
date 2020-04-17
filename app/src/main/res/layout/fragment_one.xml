@@ -24,13 +24,13 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center_horizontal"
-            android:src="@drawable/default_image"/>
+            android:src="@drawable/ic_empty_cart"/>
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center_horizontal"
-            android:text="No Data Found"
+            android:text="Empty"
             android:fontFamily="@font/adamina"
             android:textSize="25sp"
             android:textColor="@color/colorAccent"

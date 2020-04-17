@@ -1,15 +1,15 @@
 [
     {
-        "merged": "/Users/3embed/Desktop/vikas/statusdownloader/app/build/intermediates/res/merged/debug/color_mtrl_tabs_ripple_color.xml.flat",
-        "source": "/Users/3embed/.gradle/caches/transforms-2/files-2.1/2277f3c7e4e6174e8829917fc212667e/res/color/mtrl_tabs_ripple_color.xml"
+        "merged": "/Users/3embed/Desktop/vikas/statusdownloader/app/build/intermediates/res/merged/debug/drawable-mdpi-v4_common_google_signin_btn_text_dark_normal_background.9.png.flat",
+        "source": "/Users/3embed/.gradle/caches/transforms-2/files-2.1/851f25eb08ae5ea523038907f991bdea/res/drawable-mdpi-v4/common_google_signin_btn_text_dark_normal_background.9.png"
     },
     {
         "merged": "/Users/3embed/Desktop/vikas/statusdownloader/app/build/intermediates/res/merged/debug/drawable-ldpi_ic_icon.png.flat",
         "source": "/Users/3embed/Desktop/vikas/statusdownloader/app/build/generated/res/pngs/debug/drawable-ldpi/ic_icon.png"
     },
     {
-        "merged": "/Users/3embed/Desktop/vikas/statusdownloader/app/build/intermediates/res/merged/debug/drawable-mdpi-v4_common_google_signin_btn_text_dark_normal_background.9.png.flat",
-        "source": "/Users/3embed/.gradle/caches/transforms-2/files-2.1/851f25eb08ae5ea523038907f991bdea/res/drawable-mdpi-v4/common_google_signin_btn_text_dark_normal_background.9.png"
+        "merged": "/Users/3embed/Desktop/vikas/statusdownloader/app/build/intermediates/res/merged/debug/color_mtrl_tabs_ripple_color.xml.flat",
+        "source": "/Users/3embed/.gradle/caches/transforms-2/files-2.1/2277f3c7e4e6174e8829917fc212667e/res/color/mtrl_tabs_ripple_color.xml"
     },
     {
         "merged": "/Users/3embed/Desktop/vikas/statusdownloader/app/build/intermediates/res/merged/debug/drawable-hdpi-v4_abc_list_selector_disabled_holo_light.9.png.flat",
@@ -980,6 +980,10 @@
         "source": "/Users/3embed/Desktop/vikas/statusdownloader/app/src/main/res/mipmap-xxhdpi/user_profile_icon_round.png"
     },
     {
+        "merged": "/Users/3embed/Desktop/vikas/statusdownloader/app/build/intermediates/res/merged/debug/drawable-ldpi_ic_empty_cart.png.flat",
+        "source": "/Users/3embed/Desktop/vikas/statusdownloader/app/build/generated/res/pngs/debug/drawable-ldpi/ic_empty_cart.png"
+    },
+    {
         "merged": "/Users/3embed/Desktop/vikas/statusdownloader/app/build/intermediates/res/merged/debug/drawable-xxhdpi-v4_design_ic_visibility.png.flat",
         "source": "/Users/3embed/.gradle/caches/transforms-2/files-2.1/2277f3c7e4e6174e8829917fc212667e/res/drawable-xxhdpi-v4/design_ic_visibility.png"
     },
@@ -1238,6 +1242,10 @@
     {
         "merged": "/Users/3embed/Desktop/vikas/statusdownloader/app/build/intermediates/res/merged/debug/drawable-mdpi_ic_play_button.png.flat",
         "source": "/Users/3embed/Desktop/vikas/statusdownloader/app/build/generated/res/pngs/debug/drawable-mdpi/ic_play_button.png"
+    },
+    {
+        "merged": "/Users/3embed/Desktop/vikas/statusdownloader/app/build/intermediates/res/merged/debug/drawable_drawer_selected_item.xml.flat",
+        "source": "/Users/3embed/Desktop/vikas/statusdownloader/app/src/main/res/drawable/drawer_selected_item.xml"
     },
     {
         "merged": "/Users/3embed/Desktop/vikas/statusdownloader/app/build/intermediates/res/merged/debug/drawable-hdpi-v4_abc_textfield_activated_mtrl_alpha.9.png.flat",
@@ -1512,6 +1520,10 @@
         "source": "/Users/3embed/.gradle/caches/transforms-2/files-2.1/b20f72049212ec6a3f78d6ad25d6f035/res/drawable-xxxhdpi-v4/abc_ic_menu_cut_mtrl_alpha.png"
     },
     {
+        "merged": "/Users/3embed/Desktop/vikas/statusdownloader/app/build/intermediates/res/merged/debug/drawable-hdpi_ic_empty_cart.png.flat",
+        "source": "/Users/3embed/Desktop/vikas/statusdownloader/app/build/generated/res/pngs/debug/drawable-hdpi/ic_empty_cart.png"
+    },
+    {
         "merged": "/Users/3embed/Desktop/vikas/statusdownloader/app/build/intermediates/res/merged/debug/drawable-xxxhdpi_user_profile_foreground.png.flat",
         "source": "/Users/3embed/Desktop/vikas/statusdownloader/app/build/generated/res/pngs/debug/drawable-xxxhdpi/user_profile_foreground.png"
     },
@@ -1574,6 +1586,10 @@
     {
         "merged": "/Users/3embed/Desktop/vikas/statusdownloader/app/build/intermediates/res/merged/debug/drawable-hdpi_user_profile_background.png.flat",
         "source": "/Users/3embed/Desktop/vikas/statusdownloader/app/build/generated/res/pngs/debug/drawable-hdpi/user_profile_background.png"
+    },
+    {
+        "merged": "/Users/3embed/Desktop/vikas/statusdownloader/app/build/intermediates/res/merged/debug/drawable-xxhdpi_ic_empty_cart.png.flat",
+        "source": "/Users/3embed/Desktop/vikas/statusdownloader/app/build/generated/res/pngs/debug/drawable-xxhdpi/ic_empty_cart.png"
     },
     {
         "merged": "/Users/3embed/Desktop/vikas/statusdownloader/app/build/intermediates/res/merged/debug/drawable-mdpi-v4_abc_textfield_default_mtrl_alpha.9.png.flat",
@@ -1724,6 +1740,10 @@
         "source": "/Users/3embed/.gradle/caches/transforms-2/files-2.1/b20f72049212ec6a3f78d6ad25d6f035/res/drawable/abc_cab_background_internal_bg.xml"
     },
     {
+        "merged": "/Users/3embed/Desktop/vikas/statusdownloader/app/build/intermediates/res/merged/debug/drawable-xhdpi_ic_empty_cart.png.flat",
+        "source": "/Users/3embed/Desktop/vikas/statusdownloader/app/build/generated/res/pngs/debug/drawable-xhdpi/ic_empty_cart.png"
+    },
+    {
         "merged": "/Users/3embed/Desktop/vikas/statusdownloader/app/build/intermediates/res/merged/debug/drawable-ldrtl-hdpi-v17_abc_ic_menu_copy_mtrl_am_alpha.png.flat",
         "source": "/Users/3embed/.gradle/caches/transforms-2/files-2.1/b20f72049212ec6a3f78d6ad25d6f035/res/drawable-ldrtl-hdpi-v17/abc_ic_menu_copy_mtrl_am_alpha.png"
     },
@@ -1774,10 +1794,6 @@
     {
         "merged": "/Users/3embed/Desktop/vikas/statusdownloader/app/build/intermediates/res/merged/debug/color_mtrl_bottom_nav_colored_item_tint.xml.flat",
         "source": "/Users/3embed/.gradle/caches/transforms-2/files-2.1/2277f3c7e4e6174e8829917fc212667e/res/color/mtrl_bottom_nav_colored_item_tint.xml"
-    },
-    {
-        "merged": "/Users/3embed/Desktop/vikas/statusdownloader/app/build/intermediates/res/merged/debug/drawable_splash.gif.flat",
-        "source": "/Users/3embed/Desktop/vikas/statusdownloader/app/src/main/res/drawable/splash.gif"
     },
     {
         "merged": "/Users/3embed/Desktop/vikas/statusdownloader/app/build/intermediates/res/merged/debug/drawable-mdpi-v4_abc_btn_switch_to_on_mtrl_00001.9.png.flat",
@@ -1996,6 +2012,10 @@
         "source": "/Users/3embed/.gradle/caches/transforms-2/files-2.1/b20f72049212ec6a3f78d6ad25d6f035/res/anim/abc_fade_in.xml"
     },
     {
+        "merged": "/Users/3embed/Desktop/vikas/statusdownloader/app/build/intermediates/res/merged/debug/drawable-anydpi-v21_ic_empty_cart.xml.flat",
+        "source": "/Users/3embed/Desktop/vikas/statusdownloader/app/build/generated/res/pngs/debug/drawable-anydpi-v21/ic_empty_cart.xml"
+    },
+    {
         "merged": "/Users/3embed/Desktop/vikas/statusdownloader/app/build/intermediates/res/merged/debug/layout_abc_search_dropdown_item_icons_2line.xml.flat",
         "source": "/Users/3embed/.gradle/caches/transforms-2/files-2.1/b20f72049212ec6a3f78d6ad25d6f035/res/layout/abc_search_dropdown_item_icons_2line.xml"
     },
@@ -2050,6 +2070,10 @@
     {
         "merged": "/Users/3embed/Desktop/vikas/statusdownloader/app/build/intermediates/res/merged/debug/drawable-mdpi_ic_videocam_black_24dp.png.flat",
         "source": "/Users/3embed/Desktop/vikas/statusdownloader/app/build/generated/res/pngs/debug/drawable-mdpi/ic_videocam_black_24dp.png"
+    },
+    {
+        "merged": "/Users/3embed/Desktop/vikas/statusdownloader/app/build/intermediates/res/merged/debug/drawable-xxxhdpi_ic_empty_cart.png.flat",
+        "source": "/Users/3embed/Desktop/vikas/statusdownloader/app/build/generated/res/pngs/debug/drawable-xxxhdpi/ic_empty_cart.png"
     },
     {
         "merged": "/Users/3embed/Desktop/vikas/statusdownloader/app/build/intermediates/res/merged/debug/animator-v21_design_appbar_state_list_animator.xml.flat",
@@ -2174,6 +2198,10 @@
     {
         "merged": "/Users/3embed/Desktop/vikas/statusdownloader/app/build/intermediates/res/merged/debug/layout_abc_alert_dialog_button_bar_material.xml.flat",
         "source": "/Users/3embed/.gradle/caches/transforms-2/files-2.1/b20f72049212ec6a3f78d6ad25d6f035/res/layout/abc_alert_dialog_button_bar_material.xml"
+    },
+    {
+        "merged": "/Users/3embed/Desktop/vikas/statusdownloader/app/build/intermediates/res/merged/debug/drawable-mdpi_ic_empty_cart.png.flat",
+        "source": "/Users/3embed/Desktop/vikas/statusdownloader/app/build/generated/res/pngs/debug/drawable-mdpi/ic_empty_cart.png"
     },
     {
         "merged": "/Users/3embed/Desktop/vikas/statusdownloader/app/build/intermediates/res/merged/debug/layout_slidingimages_layout.xml.flat",
@@ -2422,6 +2450,10 @@
     {
         "merged": "/Users/3embed/Desktop/vikas/statusdownloader/app/build/intermediates/res/merged/debug/drawable-xhdpi-v4_abc_textfield_search_activated_mtrl_alpha.9.png.flat",
         "source": "/Users/3embed/.gradle/caches/transforms-2/files-2.1/b20f72049212ec6a3f78d6ad25d6f035/res/drawable-xhdpi-v4/abc_textfield_search_activated_mtrl_alpha.9.png"
+    },
+    {
+        "merged": "/Users/3embed/Desktop/vikas/statusdownloader/app/build/intermediates/res/merged/debug/drawable_activated_background.xml.flat",
+        "source": "/Users/3embed/Desktop/vikas/statusdownloader/app/src/main/res/drawable/activated_background.xml"
     },
     {
         "merged": "/Users/3embed/Desktop/vikas/statusdownloader/app/build/intermediates/res/merged/debug/layout_mtrl_layout_snackbar_include.xml.flat",

@@ -20,6 +20,6 @@
     <string name="admob_interstitial_id">ca-app-pub-3940256099942544/1033173712</string>
     <string name="admob_interstitial_video_id">ca-app-pub-3940256099942544/8691691433</string>
     <string name="admob_banner">ca-app-pub-3940256099942544/6300978111</string>
-    <string name="ad_unit_id">ca-app-pub-3940256099942544/2247696110</string>-->
-    <string name="native_ad_id">ca-app-pub-3940256099942544/2247696110</string>
+    <string name="ad_unit_id">ca-app-pub-3940256099942544/2247696110</string>
+    <string name="native_ad_id">ca-app-pub-3940256099942544/2247696110</string>-->
 </resources>

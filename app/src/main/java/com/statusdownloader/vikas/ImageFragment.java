@@ -200,9 +200,11 @@ public class ImageFragment extends Fragment implements ImageViewAdapter.OnClickL
 
                         recyclerView.setAdapter(imageviewAdapter);
                     } else {
+
                         rl_no_data_found.setVisibility(View.VISIBLE);
                     }
                 } else {
+                    progressBar1.setVisibility(View.GONE);
                     rl_no_data_found.setVisibility(View.VISIBLE);
                 }
 

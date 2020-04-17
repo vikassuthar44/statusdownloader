@@ -70,7 +70,7 @@
         android:layout_marginTop="@dimen/twenty_dp"
         android:layout_alignParentRight="true"
         android:layout_alignParentEnd="true"
-        android:textColor="@color/colorAccent"
+        android:textColor="@color/white"
         android:textSize="20sp"
         android:padding="@dimen/ten_dp"/>
 

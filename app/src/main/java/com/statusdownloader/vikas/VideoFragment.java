@@ -202,6 +202,7 @@ public class VideoFragment extends Fragment {
                         rl_no_data_found.setVisibility(View.VISIBLE);
                     }
                 } else {
+                    progressBar1.setVisibility(View.GONE);
                     rl_no_data_found.setVisibility(View.VISIBLE);
                 }
             }
