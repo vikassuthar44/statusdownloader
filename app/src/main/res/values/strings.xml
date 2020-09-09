@@ -3,12 +3,17 @@
     <string name="app_name">Status Downloaders</string>
     <string name="image">Image</string>
     <string name="video">Video</string>
-    <string name="admob_app_id">ca-app-pub-8344544007355635~4837394210</string>>
-    <string name="admob_banner_id">ca-app-pub-8344544007355635/5366558974</string>
+    <string name="admob_app_id">ca-app-pub-8344544007355635~4870304952</string>>
+   <!-- <string name="admob_banner_id">ca-app-pub-8344544007355635/5366558974</string>
     <string name="admob_interstitial_id">ca-app-pub-8344544007355635/2666000757</string>
     <string name="admob_interstitial_video_id">ca-app-pub-8344544007355635/8557144423</string>
     <string name="admob_banner">ca-app-pub-8344544007355635/5366558974</string>
-    <string name="ad_unit_id">ca-app-pub-8344544007355635/8951855195</string>
+    <string name="ad_unit_id">ca-app-pub-8344544007355635/8951855195</string>-->
+
+    <string name="admob_banner">ca-app-pub-8344544007355635/1296863780</string>
+    <string name="ad_unit_id">ca-app-pub-8344544007355635/2418373764</string>
+    <string name="admob_interstitial_id">ca-app-pub-8344544007355635/8983782110</string>
+    <string name="admob_interstitial_video_id">ca-app-pub-8344544007355635/8617978276</string>
     <string name="images">Image\'s</string>
     <string name="videos">Video\'s</string>>
     <string name="Open">Open</string>>

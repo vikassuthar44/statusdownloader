@@ -1,9 +1,8 @@
-package com.statusdownloader.vikas;
+package com.statusdownloader.amazeapp;
 
 import android.Manifest;
 import android.annotation.TargetApi;
 import android.app.Activity;
-import android.app.AlertDialog;
 import android.app.Dialog;
 import android.content.Context;
 import android.content.Intent;
@@ -14,6 +13,7 @@ import android.os.Build;
 import android.os.Bundle;
 import android.os.Environment;
 import android.provider.MediaStore;
+import android.text.TextUtils;
 import android.util.Log;
 import android.view.Gravity;
 import android.view.MenuItem;
@@ -47,14 +47,10 @@ import androidx.core.app.ActivityCompat;
 import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
-import androidx.fragment.app.FragmentPagerAdapter;
 import androidx.fragment.app.FragmentStatePagerAdapter;
 import androidx.viewpager.widget.ViewPager;
 
 import java.io.File;
-import java.util.concurrent.Executors;
-import java.util.concurrent.ScheduledExecutorService;
-import java.util.concurrent.TimeUnit;
 
 
 public class TabActivity extends AppCompatActivity {
@@ -114,9 +110,12 @@ public class TabActivity extends AppCompatActivity {
         t.syncState();
 
 
-
-
         nv = (NavigationView) findViewById(R.id.nv);
+        View headerLayout = nv.getHeaderView(0);
+        app_version = headerLayout.findViewById(R.id.app_version);
+        String versionCode = BuildConfig.VERSION_NAME;
+        if (versionCode != null && !TextUtils.isEmpty(versionCode))
+            app_version.setText(versionCode);
 
 
         nv.setNavigationItemSelectedListener(new NavigationView.OnNavigationItemSelectedListener() {
@@ -151,7 +150,7 @@ public class TabActivity extends AppCompatActivity {
                         }
                         break;
 
-                    case R.id.whatsapp_normal_business :
+                    case R.id.whatsapp_normal_business:
                         dl.closeDrawers();
                         fileList = new File(Environment.getExternalStorageDirectory() + "/WhatsApp/Media/.Statuses/");
                         fragmentCall(fileList);
@@ -207,7 +206,7 @@ public class TabActivity extends AppCompatActivity {
         // set the ad unit ID
         mInterstitialAd.setAdUnitId(getString(R.string.admob_interstitial_video_id));
 
-        ScheduledExecutorService scheduler =
+        /*ScheduledExecutorService scheduler =
                 Executors.newSingleThreadScheduledExecutor();
         scheduler.scheduleAtFixedRate(new Runnable() {
 
@@ -228,7 +227,7 @@ public class TabActivity extends AppCompatActivity {
                 });
 
             }
-        }, 45, 30, TimeUnit.SECONDS);
+        }, 45, 30, TimeUnit.SECONDS);*/
 
     }
 
@@ -240,7 +239,7 @@ public class TabActivity extends AppCompatActivity {
 
             progressBar.setVisibility(View.GONE);
             // Create an adapter that knows which fragment should be shown on each page
-            SimpleFragmentPagerAdapter adapter = new SimpleFragmentPagerAdapter(this, getSupportFragmentManager(),fileList);
+            SimpleFragmentPagerAdapter adapter = new SimpleFragmentPagerAdapter(this, getSupportFragmentManager(), fileList);
 
             // Set the adapter onto the view pager
             viewPager.setAdapter(adapter);
@@ -327,7 +326,6 @@ public class TabActivity extends AppCompatActivity {
     }
 
 
-
 //setupViewPager(viewPager);
 
 
@@ -345,7 +343,7 @@ public class TabActivity extends AppCompatActivity {
         @Override
         public Fragment getItem(int position) {
             if (position == 0) {
-                return new ImageFragment(TabActivity.this,file);
+                return new ImageFragment(TabActivity.this, file);
             } else {
                 return new VideoFragment(TabActivity.this, file);
             }
@@ -400,14 +398,14 @@ public class TabActivity extends AppCompatActivity {
     public void shareAppLink() {
 
         Log.d(TAG, "share image clicked");
-        File imageFileToShare = new File(String.valueOf(getDrawable(R.drawable.app_icon)));
+        File imageFileToShare = new File(String.valueOf(getDrawable(R.drawable.ic_launcher)));
 
         Log.d(TAG, "package name= " + getApplicationContext().getPackageName());
         //Toast.makeText(this, "share image clicked ", Toast.LENGTH_SHORT).show();
         Uri imageUri = null;
         try {
             imageUri = Uri.parse(MediaStore.Images.Media.insertImage(this.getContentResolver(),
-                    BitmapFactory.decodeResource(getResources(), R.drawable.app_icon), null, null));
+                    BitmapFactory.decodeResource(getResources(), R.drawable.ic_launcher), null, null));
         } catch (NullPointerException e) {
         }
 
@@ -438,6 +436,8 @@ public class TabActivity extends AppCompatActivity {
                     // permission was granted, yay! Do the
                     // contacts-related task you need to do.
                     dialog.dismiss();
+                    // fileList = Environment.getExternalStorageDirectory() + "/WhatsApp/Media/.Statuses/";
+                    fileList = new File(Environment.getExternalStorageDirectory() + "/WhatsApp/Media/.Statuses/");
                     // Find the view pager that will allow the user to swipe between fragments
                     ViewPager viewPager = (ViewPager) findViewById(R.id.viewpager);
 

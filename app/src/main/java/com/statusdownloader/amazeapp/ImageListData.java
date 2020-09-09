@@ -1,4 +1,4 @@
-package com.statusdownloader.vikas;
+package com.statusdownloader.amazeapp;
 
 public class ImageListData {
 

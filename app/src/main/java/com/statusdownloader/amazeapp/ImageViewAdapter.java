@@ -1,10 +1,10 @@
-package com.statusdownloader.vikas;
+package com.statusdownloader.amazeapp;
 
 import android.app.Activity;
-import android.content.Intent;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 
 import androidx.annotation.NonNull;
-import androidx.appcompat.widget.AppCompatImageView;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.view.LayoutInflater;
@@ -14,9 +14,9 @@ import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.RatingBar;
 import android.widget.TextView;
-import android.widget.VideoView;
 
-import com.bumptech.glide.Glide;
+import com.google.android.gms.ads.NativeExpressAdView;
+import com.google.android.gms.ads.VideoController;
 import com.google.android.gms.ads.formats.MediaView;
 import com.google.android.gms.ads.formats.NativeAd;
 import com.google.android.gms.ads.formats.UnifiedNativeAd;
@@ -26,23 +26,29 @@ import com.statusdownloader.R;
 import java.util.ArrayList;
 import java.util.List;
 
-public class VideoviewAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
-
-    private static final String TAG = VideoviewAdapter.class.getSimpleName();
+public class ImageViewAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
 
     private static final int IMAGE_VIEW = 0;
     private static final int NATIVE_AD_VIEW = 1;
     private Activity activity;
-    private ArrayList<String> videoList;
+    private ArrayList<String> imageList;
 
-    private final List<Object> mRecyclerViewItems;
-    ;
+    private static String LOG_TAG = "EXAMPLE";
+    private NativeExpressAdView mAdView;
+    private VideoController mVideoController;
+    private OnClickListerner onClickListerner;
+    // The list of Native ads and menu items.
+    //private final List<Object>
+    // The list of Native ads and menu items.
+    private final List<Object> mRecyclerViewItems;;
 
-    public VideoviewAdapter(Activity activity, ArrayList<String> imageList, List<Object> mRecyclerViewItems) {
+    public ImageViewAdapter(Activity activity, ArrayList<String> imageList, OnClickListerner onClickListerner, List<Object> mRecyclerViewItems) {
 
         this.activity = activity;
-        this.videoList = imageList;
+        this.imageList = imageList;
+        this.onClickListerner = onClickListerner;
         this.mRecyclerViewItems = mRecyclerViewItems;
+
     }
 
     @NonNull
@@ -58,39 +64,40 @@ public class VideoviewAdapter extends RecyclerView.Adapter<RecyclerView.ViewHold
                 // Fall through.
             default:
                 View menuItemLayoutView = LayoutInflater.from(viewGroup.getContext()).inflate(
-                        R.layout.activity_single_video, viewGroup, false);
+                        R.layout.single_image, viewGroup, false);
                 return new MyViewHolder(menuItemLayoutView);
         }
+
+
     }
 
     @Override
-    public void onBindViewHolder(@NonNull final RecyclerView.ViewHolder viewHolder, final int position) {
+    public void onBindViewHolder(@NonNull RecyclerView.ViewHolder viewHolder, final int position) {
 
-        if (getItemViewType(position) == IMAGE_VIEW) {
+        if(getItemViewType(position) == IMAGE_VIEW) {
 
-            if(position < videoList.size()) {
+            if(position < imageList.size()) {
                 MyViewHolder myViewHolder = (MyViewHolder) viewHolder;
-                Glide.with(activity)
-                        .load(videoList.get(position))
-                        .into(myViewHolder.image);
+                Bitmap myBitmap = BitmapFactory.decodeFile(imageList.get(position));
 
-                myViewHolder.itemView.setOnClickListener(new View.OnClickListener() {
+                myViewHolder.image.setImageBitmap(myBitmap);
+
+                myViewHolder.image.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
-                        Intent intent = new Intent(activity, FullScreenVideoActivity.class);
-                        intent.putExtra("videoUrl", videoList.get(position));
-                        activity.startActivity(intent);
+                        onClickListerner.onlick(position);
                     }
                 });
-            }
 
-        } else{
-                UnifiedNativeAd nativeAd = (UnifiedNativeAd) mRecyclerViewItems.get(position);
-                populateNativeAdView(nativeAd, ((UnifiedNativeAdViewHolder) viewHolder).getAdView());
+                //Animation zoomIn = AnimationUtils.loadAnimation(activity.getApplicationContext(), R.anim.zoom_in);
+                //myViewHolder.image.startAnimation(zoomIn);
             }
-
+        } else {
+            UnifiedNativeAd nativeAd = (UnifiedNativeAd) mRecyclerViewItems.get(position);
+            populateNativeAdView(nativeAd, ((UnifiedNativeAdViewHolder) viewHolder).getAdView());
         }
 
+    }
 
     /**
      * Determines the view type for the given position.
@@ -110,20 +117,14 @@ public class VideoviewAdapter extends RecyclerView.Adapter<RecyclerView.ViewHold
         return mRecyclerViewItems.size();
     }
 
-    static class MyViewHolder extends RecyclerView.ViewHolder {
+    public class MyViewHolder extends RecyclerView.ViewHolder {
 
-        private VideoView video;
-        private TextView tv_duration;
-        private ImageView video_gif;
-        private AppCompatImageView image;
+        private ImageView image;
 
         public MyViewHolder(@NonNull View itemView) {
             super(itemView);
 
-            tv_duration = (TextView) itemView.findViewById(R.id.tv_duration);
-            video = (VideoView) itemView.findViewById(R.id.video);
-            video_gif = (ImageView) itemView.findViewById(R.id.video_gif);
-            image = (AppCompatImageView) itemView.findViewById(R.id.image);
+            image = (ImageView) itemView.findViewById(R.id.iv_image);
         }
     }
 
@@ -208,4 +209,8 @@ public class VideoviewAdapter extends RecyclerView.Adapter<RecyclerView.ViewHold
         adView.setNativeAd(nativeAd);
     }
 
+
+    interface  OnClickListerner {
+        void onlick(int position);
+    }
 }

@@ -1,4 +1,4 @@
-package com.statusdownloader.vikas;
+package com.statusdownloader.amazeapp;
 
 import android.content.Context;
 import android.graphics.Canvas;

@@ -1,23 +1,20 @@
-package com.statusdownloader.vikas;
+package com.statusdownloader.amazeapp;
 
 import android.app.Activity;
 import android.content.Context;
 import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
 import android.net.Uri;
 import android.os.Build;
 import android.os.Parcelable;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ImageView;
 import android.widget.MediaController;
 import android.widget.VideoView;
 
 import androidx.annotation.RequiresApi;
 import androidx.viewpager.widget.PagerAdapter;
 
-import com.bogdwellers.pinchtozoom.ImageMatrixTouchHandler;
 import com.google.android.gms.ads.AdRequest;
 import com.google.android.gms.ads.AdView;
 import com.google.android.gms.ads.MobileAds;

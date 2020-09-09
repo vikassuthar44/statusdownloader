@@ -9,13 +9,13 @@
 
         <item
             android:id="@+id/whatsapp_normal_business"
-            android:icon="@drawable/ic_whatsapp"
-            android:title="WhatsApp Status"/>
+            android:icon="@drawable/ic_cloud_download_black_24dp"
+            android:title="Regular Status"/>
 
         <item
             android:id="@+id/whatsapp_business"
-            android:icon="@drawable/ic_whatsapp"
-            android:title="WhatsApp Business Status" />
+            android:icon="@drawable/ic_cloud_download_black_24dp"
+            android:title="Business Status" />
 
         <item
             android:id="@+id/more_app"

@@ -1,27 +1,28 @@
-package com.statusdownloader.vikas;
+package com.statusdownloader.amazeapp;
 
 import android.animation.Animator;
 import android.animation.AnimatorListenerAdapter;
-import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.graphics.Canvas;
+import android.graphics.drawable.Drawable;
 import android.net.Uri;
 import android.os.Bundle;
 import android.os.Environment;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.viewpager.widget.ViewPager;
+
 import android.util.Log;
 import android.view.View;
 import android.view.animation.Animation;
-import android.view.animation.AnimationUtils;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
-import android.widget.MediaController;
 import android.widget.RelativeLayout;
 import android.widget.Toast;
-import android.widget.VideoView;
 
+import com.bogdwellers.pinchtozoom.ImageMatrixTouchHandler;
 import com.google.android.gms.ads.AdListener;
 import com.google.android.gms.ads.AdRequest;
 import com.google.android.gms.ads.AdView;
@@ -31,35 +32,45 @@ import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.statusdownloader.R;
 
 import java.io.File;
-import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
-import java.io.InputStream;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
 
-public class FullScreenVideoActivity extends AppCompatActivity{
+public class FullScreenImageActivity extends AppCompatActivity  {
 
     private static final String TAG = FullScreenImageActivity.class.getSimpleName();
-    private ImageView  back, download, share;
-    private VideoView  video;
+    private ImageView image, back, download, share;
+    private RelativeLayout rl_back, rl_download, rl_share,actionBar;
     private Bitmap myBitmap;
-    private String videoPath;
-    private Animation slideDown;
-    private AdView mAdView;
+    private String imagePath;
+    private ArrayList<String> imageUrlList;
+    private int imagePosition;
     private InterstitialAd interstitialAd;
+    private Animation slideDown,zoomIn;
+    private AdView mAdView;
+    private static ViewPager mPager;
+    private SlidingImage_Adapter slidingImage_adapter;
+    private static int currentPage = 0;
+    private static int NUM_PAGES = 0;
+    private int noOfSwipePage = 0;
 
     private boolean isRotate = false;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_full_screen_video);
+        setContentView(R.layout.activity_full_scrren_image);
+
+
+        imageUrlList = new ArrayList<>();
 
 
         initData();
+
 
         // Initialize the Mobile Ads SDK
         MobileAds.initialize(this, getString(R.string.admob_app_id));
@@ -67,12 +78,12 @@ public class FullScreenVideoActivity extends AppCompatActivity{
         // Find Banner ad
         mAdView = findViewById(R.id.adView);
 
-        // for(int i=0;i<1000;i++) {
+
         AdRequest adRequest = new AdRequest
                 .Builder()
                 .build();
         mAdView.loadAd(adRequest);
-        //}
+
 
         mAdView.setAdListener(new AdListener() {
             @Override
@@ -116,29 +127,88 @@ public class FullScreenVideoActivity extends AppCompatActivity{
 
 
 
+
         // prepare for interstitial ad
-        interstitialAd = new InterstitialAd(FullScreenVideoActivity.this);
+        interstitialAd = new InterstitialAd(FullScreenImageActivity.this);
 
         //insert interstitial id
         interstitialAd.setAdUnitId(getResources().getString(R.string.admob_interstitial_id));
 
         interstitialAd.loadAd(adRequest);
 
+        interstitialAd.setAdListener(new AdListener( )
+        {
+            public void onAdLoaded() {
+                //displayInterstitialAds();
+            }
 
+            @Override
+            public void onAdClosed() {
+                super.onAdClosed();
+            }
+
+            @Override
+            public void onAdFailedToLoad(int i) {
+                super.onAdFailedToLoad(i);
+            }
+
+            @Override
+            public void onAdLeftApplication() {
+                super.onAdLeftApplication();
+            }
+
+            @Override
+            public void onAdOpened() {
+                super.onAdOpened();
+            }
+
+            @Override
+            public void onAdClicked() {
+                super.onAdClicked();
+            }
+
+            @Override
+            public void onAdImpression() {
+                super.onAdImpression();
+            }
+        });
 
 
     }
 
 
-
-
-    @SuppressLint("RestrictedApi")
     private void initData() {
 
+        image = (ImageView) findViewById(R.id.image);
 
-        video = (VideoView) findViewById(R.id.video);
 
 
+
+        Intent intent = getIntent();
+        if (intent != null) {
+
+            imageUrlList = intent.getStringArrayListExtra("imageUrlList");
+            imagePosition = Integer.valueOf(intent.getStringExtra("position"));
+            //imagePath = intent.getStringExtra("imageUrl");
+            myBitmap = BitmapFactory.decodeFile(imagePath);
+
+            image.setImageBitmap(myBitmap);
+        }
+
+        image.setOnTouchListener(new ImageMatrixTouchHandler(this));
+
+        mPager = (ViewPager) findViewById(R.id.pager);
+        slidingImage_adapter = new SlidingImage_Adapter(this,this, imageUrlList);
+        mPager.setAdapter(slidingImage_adapter);
+        mPager.setCurrentItem(imagePosition);
+
+
+
+
+       /* CirclePageIndicator indicator = (CirclePageIndicator)
+                findViewById(R.id.indicator);
+
+        indicator.setViewPager(mPager);*/
 
         FloatingActionButton fabAdd = (FloatingActionButton) findViewById(R.id.fabAdd);
 
@@ -148,34 +218,6 @@ public class FullScreenVideoActivity extends AppCompatActivity{
         LinearLayout rl_download_fab = (LinearLayout) findViewById(R.id.rl_download_fab);
         LinearLayout rl_share_fab = (LinearLayout) findViewById(R.id.rl_share_fab);
 
-        Intent intent = getIntent();
-
-            videoPath = intent.getStringExtra("videoUrl");
-            Uri uri = Uri.parse(videoPath);
-
-
-            MediaController mediaController = new MediaController(this);
-            mediaController.setAnchorView(video);
-            video.setMediaController(mediaController);
-            video.setVideoURI(uri);
-            video.requestFocus();
-            video.start();
-
-            mediaController.setPadding(0,0,0,25);
-
-            if(mediaController.isShowing()) {
-                fabAdd.setVisibility(View.GONE);
-                fabDownload.setVisibility(View.GONE);
-                fabShare.setVisibility(View.GONE);
-            } else {
-                fabAdd.setVisibility(View.VISIBLE);
-                fabDownload.setVisibility(View.VISIBLE);
-                fabShare.setVisibility(View.VISIBLE);
-            }
-
-
-
-
         init(rl_download_fab);
         init(rl_share_fab);
 
@@ -184,11 +226,11 @@ public class FullScreenVideoActivity extends AppCompatActivity{
             public void onClick(View v) {
                 isRotate = rotateFab(v, !isRotate);
                 if(isRotate){
-                    showIn(rl_share_fab);
-                    showIn(rl_download_fab);
+                   showIn(rl_share_fab);
+                   showIn(rl_download_fab);
                 }else{
                     showOut(rl_share_fab);
-                    showOut(rl_download_fab);
+                   showOut(rl_download_fab);
                 }
 
             }
@@ -204,14 +246,12 @@ public class FullScreenVideoActivity extends AppCompatActivity{
         rl_download_fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                downloadVideo(videoPath);
+                downloadImage();
             }
         });
 
 
-
     }
-
 
     private   boolean rotateFab(final View v, boolean rotate) {
         v.animate().setDuration(200)
@@ -268,23 +308,10 @@ public class FullScreenVideoActivity extends AppCompatActivity{
 
 
 
-
-    private void saveVideoToInternalStorage (String filePath) {
-        downloadVideo(filePath);
-    }
-
-
-
-
-
-
-    public void downloadVideo(String filepath) {
-
-        InputStream in = null;
-
-        FileOutputStream fos= null;
+    public void downloadImage() {
+        FileOutputStream fos = null;
         File file = getDisc();
-        if(!file.exists() && !file.mkdirs()) {
+        if (!file.exists() && !file.mkdirs()) {
             //Toast.makeText(this, "Can't create directory to store image", Toast.LENGTH_LONG).show();
             //return;
             System.out.println("file not created");
@@ -292,23 +319,17 @@ public class FullScreenVideoActivity extends AppCompatActivity{
         }
         SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyymmsshhmmss");
         String date = simpleDateFormat.format(new Date());
-        String name = "FileName"+date+".mp4";
-        String file_name = file.getAbsolutePath()+"/"+name;
+        String name = "FileName" + date + ".jpg";
+        String file_name = file.getAbsolutePath() + "/" + name;
         File new_file = new File(file_name);
         System.out.println("new_file created");
+
+        Drawable current =  slidingImage_adapter.views.get(mPager.getCurrentItem()).getDrawable();
+
+
         try {
-
-            in = new FileInputStream(filepath);
-            fos= new FileOutputStream(new_file);
-
-            byte[] buf = new byte[1024];
-            int len;
-
-            while ((len = in.read(buf)) > 0) {
-                fos.write(buf, 0, len);
-            }
-
-            Bitmap bitmap = viewToBitmap(video, video.getWidth(), video.getHeight() );
+            fos = new FileOutputStream(new_file);
+            Bitmap bitmap = viewToBitmap(current, current.getBounds().width(), current.getBounds().height());
             bitmap.compress(Bitmap.CompressFormat.JPEG, 100, fos);
             Toast.makeText(this, "Save success", Toast.LENGTH_LONG).show();
             fos.flush();
@@ -327,15 +348,17 @@ public class FullScreenVideoActivity extends AppCompatActivity{
         } else {
             Log.d(TAG, "downloadImage: dfsd");
         }
+
     }
-    public void refreshGallery(File file){
+
+    public void refreshGallery(File file) {
         Intent intent = new Intent(Intent.ACTION_MEDIA_SCANNER_SCAN_FILE);
         intent.setData(Uri.fromFile(file));
         sendBroadcast(intent);
     }
 
-    private File getDisc(){
-        String t= getCurrentDateAndTime();
+    private File getDisc() {
+        String t = getCurrentDateAndTime();
         File file = Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_DCIM);
         return new File(file, getResources().getString(R.string.app_name));
     }
@@ -347,7 +370,7 @@ public class FullScreenVideoActivity extends AppCompatActivity{
         return formattedDate;
     }
 
-    public static Bitmap viewToBitmap(View view, int width, int height) {
+    public static Bitmap viewToBitmap(Drawable view, int width, int height) {
         Bitmap bitmap = Bitmap.createBitmap(width, height, Bitmap.Config.ARGB_8888);
         Canvas canvas = new Canvas(bitmap);
         view.draw(canvas);
@@ -356,15 +379,18 @@ public class FullScreenVideoActivity extends AppCompatActivity{
 
     public void shareImage() {
 
-        File videoFile = new File(videoPath);
         Log.d(TAG, "share image clicked");
+        File imageFileToShare = new File(imageUrlList.get(mPager.getCurrentItem()));
 
-        Uri imgUri = Uri.parse(videoFile.getAbsolutePath());
+        Log.d(TAG, "package name= " + getApplicationContext().getPackageName());
+        //Toast.makeText(this, "share image clicked ", Toast.LENGTH_SHORT).show();
+
+        Uri imgUri = Uri.parse(imageFileToShare.getAbsolutePath());
         Intent whatsappIntent = new Intent(Intent.ACTION_SEND);
         whatsappIntent.setType("text/plain");
         whatsappIntent.putExtra(Intent.EXTRA_STREAM, imgUri);
-        whatsappIntent.putExtra(Intent.EXTRA_TEXT, "If you want to save or share your friend's status, please click on this link \n https://play.google.com/store/apps/details?id=com.statusdownloader.vikas&hl=en");
-        whatsappIntent.setType("video/*");
+        whatsappIntent.putExtra(Intent.EXTRA_TEXT, "If you want to save or share your friend's status, please click on this link \n https://play.google.com/store/apps/details?id=com.statusdownloader.amazeapp&hl=en");
+        whatsappIntent.setType("image/*");
         whatsappIntent.addFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION);
 
         if(interstitialAd.isLoaded()) {
@@ -380,4 +406,7 @@ public class FullScreenVideoActivity extends AppCompatActivity{
         }
 
     }
+
+
+
 }

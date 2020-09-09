@@ -1,9 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <color name="colorPrimary">#232526</color>
-    <color name="colorPrimaryDark">#232526</color>
-    <color name="colorAccent">#D81B60</color>
-    <color name="actionbar">#232526</color>
+    <color name="colorPrimary">#2B7819</color>
+    <color name="colorPrimaryDark">#cccccc</color>
+  <!--  <color name="colorAccent">#32F706</color>-->
+    <color name="colorAccent">@android:color/white</color>
+    <color name="actionbar">#2B7819</color>
     <color name="background">#FFFFFF</color>
     <color name="white">#FFFFFF</color>
     <color name="black">#000000</color>

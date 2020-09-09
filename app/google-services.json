@@ -8,6 +8,35 @@
   "client": [
     {
       "client_info": {
+        "mobilesdk_app_id": "1:111269725593:android:7af34f96ce5ff25f387f08",
+        "android_client_info": {
+          "package_name": "com.statusdownloader.amazeapp"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "111269725593-u6k3klrd8tr7s1cbpaoq72anutjibvhe.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCkmQkyg6sgsRziT3ejVKaYi6SXKBCmIy0"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "111269725593-u6k3klrd8tr7s1cbpaoq72anutjibvhe.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
         "mobilesdk_app_id": "1:111269725593:android:68bb9ae4c8dfac8d387f08",
         "android_client_info": {
           "package_name": "com.statusdownloader.vikas"

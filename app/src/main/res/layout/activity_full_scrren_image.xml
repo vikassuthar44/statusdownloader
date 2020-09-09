@@ -125,7 +125,8 @@
                 android:layout_marginBottom="18dp"
                 android:src="@drawable/ic_add_black_24dp"
                 app:fabSize="normal"
-                app:rippleColor="@color/white" />
+                android:tint="@color/grey_80"
+                app:rippleColor="@color/grey_80" />
         </LinearLayout>
 
         <!-- set Banner ad position in UI layout design -->
